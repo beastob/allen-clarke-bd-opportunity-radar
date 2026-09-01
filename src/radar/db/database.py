@@ -43,6 +43,73 @@ class DatabaseManager:
         with self.get_connection() as conn:
             conn.executescript(schema_sql)
 
+    # --- Helper row converters ---
+
+    @staticmethod
+    def _row_to_service_line(row: sqlite3.Row) -> ServiceLine:
+        return ServiceLine(
+            id=row["id"],
+            name=row["name"],
+            description=row["description"],
+            keywords=json.loads(row["keywords"]) if row["keywords"] else [],
+            case_studies=json.loads(row["case_studies"]) if row["case_studies"] else [],
+            created_at=row["created_at"],
+        )
+
+    @staticmethod
+    def _row_to_client(row: sqlite3.Row) -> Client:
+        return Client(
+            id=row["id"],
+            name=row["name"],
+            jurisdiction=row["jurisdiction"],
+            tier=row["tier"],
+            sector=row["sector"],
+            key_divisions=json.loads(row["key_divisions"]) if row["key_divisions"] else [],
+            past_engagements=json.loads(row["past_engagements"]) if row["past_engagements"] else [],
+            relationship_notes=row["relationship_notes"],
+            created_at=row["created_at"],
+            updated_at=row["updated_at"],
+        )
+
+    @staticmethod
+    def _row_to_scan(row: sqlite3.Row) -> ScanRecord:
+        return ScanRecord(
+            id=row["id"],
+            content_hash=row["content_hash"],
+            source_id=row["source_id"],
+            source_name=row["source_name"],
+            jurisdiction=row["jurisdiction"],
+            title=row["title"],
+            url=row["url"],
+            published_date=row["published_date"],
+            summary=row["summary"],
+            raw_content=row["raw_content"],
+            ingested_at=row["ingested_at"],
+            status=row["status"],
+        )
+
+    @staticmethod
+    def _row_to_opportunity(row: sqlite3.Row) -> OpportunityRecord:
+        return OpportunityRecord(
+            id=row["id"],
+            scan_id=row["scan_id"],
+            title=row["title"],
+            jurisdiction=row["jurisdiction"],
+            target_client_id=row["target_client_id"],
+            primary_service_line_id=row["primary_service_line_id"],
+            verified_facts=row["verified_facts"] or "",
+            strategic_interpretation=row["strategic_interpretation"] or "",
+            strategic_fit_score=row["strategic_fit_score"],
+            urgency_score=row["urgency_score"],
+            budget_score=row["budget_score"],
+            total_score=row["total_score"],
+            conversation_starter=row["conversation_starter"] or "",
+            target_contact_persona=row["target_contact_persona"] or "",
+            status=row["status"],
+            created_at=row["created_at"],
+            updated_at=row["updated_at"],
+        )
+
     # --- Service Lines ---
 
     def save_service_line(self, service_line: ServiceLine):
@@ -70,17 +137,12 @@ class DatabaseManager:
     def get_service_lines(self) -> List[ServiceLine]:
         with self.get_connection() as conn:
             rows = conn.execute("SELECT * FROM service_lines ORDER BY name ASC;").fetchall()
-            return [
-                ServiceLine(
-                    id=row["id"],
-                    name=row["name"],
-                    description=row["description"],
-                    keywords=json.loads(row["keywords"]) if row["keywords"] else [],
-                    case_studies=json.loads(row["case_studies"]) if row["case_studies"] else [],
-                    created_at=row["created_at"],
-                )
-                for row in rows
-            ]
+            return [self._row_to_service_line(row) for row in rows]
+
+    def get_service_line_by_id(self, service_line_id: str) -> Optional[ServiceLine]:
+        with self.get_connection() as conn:
+            row = conn.execute("SELECT * FROM service_lines WHERE id = ?;", (service_line_id,)).fetchone()
+            return self._row_to_service_line(row) if row else None
 
     # --- Clients ---
 
@@ -123,21 +185,65 @@ class DatabaseManager:
                 query = "SELECT * FROM clients ORDER BY name ASC;"
                 rows = conn.execute(query).fetchall()
 
-            return [
-                Client(
-                    id=row["id"],
-                    name=row["name"],
-                    jurisdiction=row["jurisdiction"],
-                    tier=row["tier"],
-                    sector=row["sector"],
-                    key_divisions=json.loads(row["key_divisions"]) if row["key_divisions"] else [],
-                    past_engagements=json.loads(row["past_engagements"]) if row["past_engagements"] else [],
-                    relationship_notes=row["relationship_notes"],
-                    created_at=row["created_at"],
-                    updated_at=row["updated_at"],
-                )
-                for row in rows
-            ]
+            return [self._row_to_client(row) for row in rows]
+
+    def get_client_by_id(self, client_id: str) -> Optional[Client]:
+        with self.get_connection() as conn:
+            row = conn.execute("SELECT * FROM clients WHERE id = ?;", (client_id,)).fetchone()
+            return self._row_to_client(row) if row else None
+
+    def get_client_by_name(self, client_name: str) -> Optional[Client]:
+        with self.get_connection() as conn:
+            cleaned = client_name.strip()
+            # 1. Try exact id match
+            row = conn.execute("SELECT * FROM clients WHERE LOWER(id) = LOWER(?);", (cleaned,)).fetchone()
+            if not row:
+                # 2. Try exact name match (case-insensitive)
+                row = conn.execute("SELECT * FROM clients WHERE LOWER(name) = LOWER(?);", (cleaned,)).fetchone()
+            if not row:
+                # 3. Try substring name or id match
+                search_pattern = f"%{cleaned}%"
+                row = conn.execute(
+                    "SELECT * FROM clients WHERE name LIKE ? OR id LIKE ? ORDER BY LENGTH(name) ASC LIMIT 1;",
+                    (search_pattern, search_pattern),
+                ).fetchone()
+            if not row:
+                # 4. Try multi-token match (all words match name or id)
+                tokens = [t.strip() for t in cleaned.split() if t.strip()]
+                if len(tokens) > 1:
+                    conditions = []
+                    token_params = []
+                    for t in tokens:
+                        conditions.append("(name LIKE ? OR id LIKE ?)")
+                        token_params.extend([f"%{t}%", f"%{t}%"])
+                    query = f"SELECT * FROM clients WHERE {' AND '.join(conditions)} ORDER BY LENGTH(name) ASC LIMIT 1;"
+                    row = conn.execute(query, token_params).fetchone()
+
+            return self._row_to_client(row) if row else None
+
+    def update_client_relationship_notes(
+        self,
+        client_id: str,
+        relationship_notes: str,
+        append: bool = True,
+    ) -> Optional[Client]:
+        client = self.get_client_by_id(client_id) or self.get_client_by_name(client_id)
+        if not client:
+            return None
+
+        from datetime import datetime, timezone
+        now_str = datetime.now(timezone.utc).isoformat()
+
+        if append and client.relationship_notes:
+            updated_notes = f"{client.relationship_notes}\n[{now_str}] {relationship_notes}"
+        else:
+            updated_notes = relationship_notes
+
+        client.relationship_notes = updated_notes
+        client.updated_at = now_str
+
+        self.save_client(client)
+        return client
 
     # --- Scans ---
 
@@ -177,22 +283,7 @@ class DatabaseManager:
     def get_scan_by_id(self, scan_id: str) -> Optional[ScanRecord]:
         with self.get_connection() as conn:
             row = conn.execute("SELECT * FROM scans WHERE id = ?;", (scan_id,)).fetchone()
-            if not row:
-                return None
-            return ScanRecord(
-                id=row["id"],
-                content_hash=row["content_hash"],
-                source_id=row["source_id"],
-                source_name=row["source_name"],
-                jurisdiction=row["jurisdiction"],
-                title=row["title"],
-                url=row["url"],
-                published_date=row["published_date"],
-                summary=row["summary"],
-                raw_content=row["raw_content"],
-                ingested_at=row["ingested_at"],
-                status=row["status"],
-            )
+            return self._row_to_scan(row) if row else None
 
     def get_scans(self, jurisdiction: Optional[str] = None, limit: int = 100) -> List[ScanRecord]:
         with self.get_connection() as conn:
@@ -203,23 +294,7 @@ class DatabaseManager:
                 query = "SELECT * FROM scans ORDER BY published_date DESC LIMIT ?;"
                 rows = conn.execute(query, (limit,)).fetchall()
 
-            return [
-                ScanRecord(
-                    id=row["id"],
-                    content_hash=row["content_hash"],
-                    source_id=row["source_id"],
-                    source_name=row["source_name"],
-                    jurisdiction=row["jurisdiction"],
-                    title=row["title"],
-                    url=row["url"],
-                    published_date=row["published_date"],
-                    summary=row["summary"],
-                    raw_content=row["raw_content"],
-                    ingested_at=row["ingested_at"],
-                    status=row["status"],
-                )
-                for row in rows
-            ]
+            return [self._row_to_scan(row) for row in rows]
 
     # --- Opportunities ---
 
@@ -271,6 +346,11 @@ class DatabaseManager:
                 ),
             )
 
+    def get_opportunity_by_id(self, opportunity_id: str) -> Optional[OpportunityRecord]:
+        with self.get_connection() as conn:
+            row = conn.execute("SELECT * FROM opportunities WHERE id = ?;", (opportunity_id,)).fetchone()
+            return self._row_to_opportunity(row) if row else None
+
     def get_opportunities(
         self,
         jurisdiction: Optional[str] = None,
@@ -288,25 +368,90 @@ class DatabaseManager:
             params.append(limit)
 
             rows = conn.execute(query, params).fetchall()
+            return [self._row_to_opportunity(row) for row in rows]
+
+    def query_opportunities(
+        self,
+        client: Optional[str] = None,
+        sector: Optional[str] = None,
+        jurisdiction: Optional[str] = None,
+        min_score: int = 0,
+        limit: int = 50,
+    ) -> List[Dict[str, Any]]:
+        """Queries opportunities with multi-field filtering and joins client & service line metadata."""
+        with self.get_connection() as conn:
+            params: List[Any] = [min_score]
+            where_clauses = ["o.total_score >= ?"]
+
+            if jurisdiction and jurisdiction != "ALL":
+                where_clauses.append("o.jurisdiction = ?")
+                params.append(jurisdiction)
+
+            if client:
+                where_clauses.append("(c.id = ? OR c.name LIKE ?)")
+                params.extend([client, f"%{client}%"])
+
+            if sector:
+                where_clauses.append("c.sector LIKE ?")
+                params.append(f"%{sector}%")
+
+            query = f"""
+                SELECT
+                    o.id,
+                    o.scan_id,
+                    o.title,
+                    o.jurisdiction,
+                    o.target_client_id,
+                    c.name AS client_name,
+                    c.sector AS client_sector,
+                    c.tier AS client_tier,
+                    o.primary_service_line_id,
+                    sl.name AS service_line_name,
+                    o.verified_facts,
+                    o.strategic_interpretation,
+                    o.strategic_fit_score,
+                    o.urgency_score,
+                    o.budget_score,
+                    o.total_score,
+                    o.conversation_starter,
+                    o.target_contact_persona,
+                    o.status,
+                    o.created_at,
+                    o.updated_at
+                FROM opportunities o
+                LEFT JOIN clients c ON o.target_client_id = c.id
+                LEFT JOIN service_lines sl ON o.primary_service_line_id = sl.id
+                WHERE {' AND '.join(where_clauses)}
+                ORDER BY o.total_score DESC
+                LIMIT ?;
+            """
+            params.append(limit)
+
+            rows = conn.execute(query, params).fetchall()
             return [
-                OpportunityRecord(
-                    id=row["id"],
-                    scan_id=row["scan_id"],
-                    title=row["title"],
-                    jurisdiction=row["jurisdiction"],
-                    target_client_id=row["target_client_id"],
-                    primary_service_line_id=row["primary_service_line_id"],
-                    verified_facts=row["verified_facts"] or "",
-                    strategic_interpretation=row["strategic_interpretation"] or "",
-                    strategic_fit_score=row["strategic_fit_score"],
-                    urgency_score=row["urgency_score"],
-                    budget_score=row["budget_score"],
-                    total_score=row["total_score"],
-                    conversation_starter=row["conversation_starter"] or "",
-                    target_contact_persona=row["target_contact_persona"] or "",
-                    status=row["status"],
-                    created_at=row["created_at"],
-                    updated_at=row["updated_at"],
-                )
+                {
+                    "id": row["id"],
+                    "scan_id": row["scan_id"],
+                    "title": row["title"],
+                    "jurisdiction": row["jurisdiction"],
+                    "target_client_id": row["target_client_id"],
+                    "client_name": row["client_name"] or "Unknown Client",
+                    "client_sector": row["client_sector"] or "General Public Sector",
+                    "client_tier": row["client_tier"] or "Other",
+                    "primary_service_line_id": row["primary_service_line_id"],
+                    "service_line_name": row["service_line_name"] or "Policy & Strategy Advisory",
+                    "verified_facts": row["verified_facts"] or "",
+                    "strategic_interpretation": row["strategic_interpretation"] or "",
+                    "strategic_fit_score": row["strategic_fit_score"],
+                    "urgency_score": row["urgency_score"],
+                    "budget_score": row["budget_score"],
+                    "total_score": row["total_score"],
+                    "conversation_starter": row["conversation_starter"] or "",
+                    "target_contact_persona": row["target_contact_persona"] or "",
+                    "status": row["status"],
+                    "created_at": row["created_at"],
+                    "updated_at": row["updated_at"],
+                }
                 for row in rows
             ]
+
