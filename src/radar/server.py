@@ -11,6 +11,7 @@ from mcp.server.fastmcp import FastMCP
 from radar.briefing.pitch_generator import PitchGenerator
 from radar.db.database import DatabaseManager
 from radar.ingestion.engine import IngestionEngine
+from radar.pipeline.llm import get_llm, get_llm_status
 from radar.pipeline.orchestrator import OpportunityPipeline
 
 logger = logging.getLogger(__name__)
@@ -19,10 +20,12 @@ logger = logging.getLogger(__name__)
 def create_mcp_server(
     db_manager: Optional[DatabaseManager] = None,
     db_path: str = "radar.db",
+    llm: Optional[Any] = None,
 ) -> FastMCP:
     """Creates and configures the FastMCP server with all BD tools."""
     db = db_manager or DatabaseManager(db_path=db_path)
     pitch_generator = PitchGenerator()
+    active_llm = llm if llm is not None else get_llm()
 
     mcp = FastMCP(
         "Allen-Clarke-BD-Opportunity-Radar",
@@ -31,6 +34,27 @@ def create_mcp_server(
             "for Allen + Clarke across New Zealand and Australian public sector opportunities."
         ),
     )
+
+    @mcp.tool()
+    def get_system_status() -> Dict[str, Any]:
+        """Returns the real-time operational status of the Radar, including LLM provider, OpenRouter configuration, and database stats."""
+        llm_diag = get_llm_status()
+        service_lines_count = len(db.get_service_lines())
+        clients_count = len(db.get_clients())
+        scans_count = len(db.get_scans(limit=1000))
+        opps_count = len(db.get_opportunities(limit=1000))
+
+        return {
+            "status": "online",
+            "llm_configuration": llm_diag,
+            "knowledge_base": {
+                "db_path": db.db_path,
+                "service_lines_count": service_lines_count,
+                "clients_count": clients_count,
+                "scans_count": scans_count,
+                "opportunities_count": opps_count,
+            },
+        }
 
     @mcp.tool()
     def trigger_policy_scan(
@@ -67,7 +91,7 @@ def create_mcp_server(
             )
 
             # 2. Execute multi-agent reasoning pipeline
-            pipeline = OpportunityPipeline(db_manager=db)
+            pipeline = OpportunityPipeline(db_manager=db, llm=active_llm)
             pipeline_result = pipeline.run(
                 jurisdiction=clean_jurisdiction,
                 max_items=max_items,

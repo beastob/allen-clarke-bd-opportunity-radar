@@ -9,6 +9,7 @@ from radar.db.database import DatabaseManager
 from radar.models import JurisdictionType, ScanRecord
 from radar.pipeline.analyzer_agent import ImpactAnalyzerAgent
 from radar.pipeline.filter_agent import IngestionFilterAgent
+from radar.pipeline.llm import get_llm
 from radar.pipeline.matcher_agent import ServiceMatcherAgent
 from radar.pipeline.models import BDOpportunity, PipelineResult
 from radar.pipeline.scoring_agent import PrioritisationAgent
@@ -30,11 +31,17 @@ class OpportunityPipeline:
     ):
         """Initializes the multi-agent pipeline with storage, agents, and QA validator."""
         self.db_manager = db_manager or DatabaseManager()
-        self.llm = llm
-        self.filter_agent = filter_agent or IngestionFilterAgent(llm=llm)
-        self.analyzer_agent = analyzer_agent or ImpactAnalyzerAgent(llm=llm)
-        self.matcher_agent = matcher_agent or ServiceMatcherAgent(llm=llm)
-        self.scoring_agent = scoring_agent or PrioritisationAgent(llm=llm)
+        if llm in ("heuristics", False):
+            self.llm = None
+        elif llm is not None:
+            self.llm = llm
+        else:
+            self.llm = get_llm()
+
+        self.filter_agent = filter_agent or IngestionFilterAgent(llm=self.llm)
+        self.analyzer_agent = analyzer_agent or ImpactAnalyzerAgent(llm=self.llm)
+        self.matcher_agent = matcher_agent or ServiceMatcherAgent(llm=self.llm)
+        self.scoring_agent = scoring_agent or PrioritisationAgent(llm=self.llm)
         self.link_validator = link_validator or LinkValidator()
 
     def run(

@@ -241,10 +241,15 @@ class PrioritisationAgent:
             "offering": match.service_offering_summary,
         })
 
+        # Clamp scores safely within allowable rubric boundaries
+        fit = max(0, min(35, llm_out.strategic_fit_score))
+        urgency = max(0, min(35, llm_out.urgency_score))
+        budget = max(0, min(30, llm_out.budget_score))
+
         score = OpportunityScore(
-            strategic_fit_score=llm_out.strategic_fit_score,
-            urgency_score=llm_out.urgency_score,
-            budget_score=llm_out.budget_score,
+            strategic_fit_score=fit,
+            urgency_score=urgency,
+            budget_score=budget,
             rationale=llm_out.scoring_rationale,
         )
 

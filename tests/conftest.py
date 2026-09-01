@@ -4,6 +4,13 @@ import pytest
 from radar.pipeline.models import BDOpportunity, OpportunityScore
 
 
+@pytest.fixture(autouse=True)
+def default_test_environment(monkeypatch):
+    """Ensures test suite runs in deterministic offline mode by default."""
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+
 @pytest.fixture
 def sample_opportunity_nz():
     """Sample high-scoring NZ opportunity."""

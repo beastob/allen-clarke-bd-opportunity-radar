@@ -1,10 +1,11 @@
 # Allen + Clarke Business Development Opportunity Radar
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![OpenRouter Supported](https://img.shields.io/badge/LLM-OpenRouter%20%7C%20OpenAI-blueviolet.svg)](https://openrouter.ai/)
 [![FastMCP 1.0+](https://img.shields.io/badge/FastMCP-1.0+-green.svg)](https://modelcontextprotocol.io/)
 [![LangChain Core](https://img.shields.io/badge/LangChain-Core-purple.svg)](https://www.langchain.com/)
 [![SQLite Knowledge Base](https://img.shields.io/badge/Database-SQLite%20WAL-lightgrey.svg)](https://www.sqlite.org/)
-[![Tests](https://img.shields.io/badge/pytest-67%20passed%20(100%25)-success.svg)](tests/)
+[![Tests](https://img.shields.io/badge/pytest-74%20passed%20(100%25)-success.svg)](tests/)
 [![Jurisdictions](https://img.shields.io/badge/Jurisdictions-NZ%20%7C%20AU-orange.svg)]()
 
 > **Fortnightly Public Sector Policy Ingestion, Multi-Agent Opportunity Reasoning, and Business Development Automation for Allen + Clarke Consulting.**
@@ -20,6 +21,9 @@
   - [4-Agent LangChain Reasoning Pipeline](#4-agent-langchain-reasoning-pipeline)
   - [The 6 Mandatory Consulting Evaluation Questions](#the-6-mandatory-consulting-evaluation-questions)
   - [Fact vs. Interpretation Separation](#fact-vs-interpretation-separation)
+- [OpenRouter & LLM Integration (Live Demos)](#openrouter--llm-integration-live-demos)
+  - [Setting up OpenRouter](#setting-up-openrouter)
+  - [Supported Model Examples](#supported-model-examples)
 - [Prioritisation & Scoring Rubric](#prioritisation--scoring-rubric)
 - [Allen + Clarke Knowledge Base](#allen--clarke-knowledge-base)
   - [The 8 Core Practice Lines](#the-8-core-practice-lines)
@@ -172,6 +176,43 @@ To maintain absolute credibility with government clients, the radar strictly seg
 
 ---
 
+## OpenRouter & LLM Integration (Live Demos)
+
+The Opportunity Radar includes first-class support for **[OpenRouter](https://openrouter.ai/)** (and direct OpenAI/Anthropic endpoints). This allows partners and consultants to run live multi-agent demonstrations using models like Claude 3.5 Sonnet, GPT-4o, or Gemini 2.5 Flash.
+
+### Setting up OpenRouter
+
+1. Copy the template environment file:
+   ```bash
+   cp .env.example .env
+   ```
+2. Add your OpenRouter API key to `.env`:
+   ```bash
+   OPENROUTER_API_KEY=sk-or-v1-your-actual-openrouter-key
+   OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
+   ```
+3. Run a scan with OpenRouter LLM reasoning:
+   ```bash
+   python run_scan.py --offline
+   ```
+   The CLI will automatically detect `OPENROUTER_API_KEY` and display `Reasoning : Active LLM (anthropic/claude-3.5-sonnet)` in the console banner.
+
+> [!TIP]
+> **Graceful Fallback**: If no API key is provided, the radar automatically operates in **Deterministic Heuristics Mode**, enabling full offline execution and automated CI/CD testing without network or API token dependencies.
+
+### Supported Model Examples
+
+You can switch models on the fly using the `--model` flag:
+
+| Model ID | Provider | Ideal Use Case |
+| :--- | :--- | :--- |
+| `anthropic/claude-3.5-sonnet` | Anthropic (via OpenRouter) | **Recommended for Live Demos**: Nuanced policy analysis, authentic consultant pitch voice, and accurate statutory fact isolation. |
+| `google/gemini-2.5-flash` | Google (via OpenRouter) | Ultra-fast execution across large government gazette feeds. |
+| `openai/gpt-4o-mini` | OpenAI (via OpenRouter) | Cost-efficient, high-volume automated batch scanning. |
+| `deepseek/deepseek-chat` | DeepSeek (via OpenRouter) | Complex multi-agency dependency reasoning. |
+
+---
+
 ## Prioritisation & Scoring Rubric
 
 Opportunities are ranked using an objective **0–100 Prioritisation Rubric**:
@@ -227,6 +268,7 @@ The embedded SQLite knowledge base includes pre-seeded profiles for major public
 ### Prerequisites
 - **Python 3.11** or higher
 - **Git**
+- *(Optional)* **OpenRouter API Key** for live LLM multi-agent reasoning
 
 ### 1. Clone the Repository
 ```bash
@@ -251,7 +293,13 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-### 4. Run Your First Scan (Instant Demo)
+### 4. (Optional) Configure OpenRouter API Key
+```bash
+cp .env.example .env
+# Edit .env and paste OPENROUTER_API_KEY=sk-or-v1-...
+```
+
+### 5. Run Your First Scan (Instant Demo)
 ```bash
 python run_scan.py --offline
 ```
@@ -261,10 +309,12 @@ This initializes the SQLite database (`radar.db`), seeds the A+C practice lines 
 
 ## CLI User Guide (`run_scan.py`)
 
-The CLI runner provides a straightforward command-line interface for executing scanning cycles, customizing jurisdictions, adjusting item caps, and choosing between live feeds and curated fixtures.
+The CLI runner provides a straightforward command-line interface for executing scanning cycles, selecting LLM providers/models, customizing jurisdictions, adjusting item caps, and choosing between live feeds and curated fixtures.
 
 ```
 usage: run_scan.py [-h] [-j {NZ,AU,ALL}] [-m MAX_ITEMS] [--offline | --no-offline]
+                   [--provider {openrouter,openai,heuristics,auto}] [--model MODEL]
+                   [--api-key API_KEY] [--temperature TEMPERATURE]
                    [--db-path DB_PATH] [--output-dir OUTPUT_DIR]
                    [--markdown-output MARKDOWN_OUTPUT] [--seed] [-v] [-q]
 ```
@@ -276,6 +326,10 @@ usage: run_scan.py [-h] [-j {NZ,AU,ALL}] [-m MAX_ITEMS] [--offline | --no-offlin
 | `-j` | `--jurisdiction` | `str` | `ALL` | Target jurisdiction to scan: `NZ` (New Zealand), `AU` (Australia), or `ALL`. |
 | `-m` | `--max-items` | `int` | `10` | Maximum number of top-scoring opportunities to include in deliverables (max: 10). |
 | | `--offline` / `--no-offline` | `bool` | `True` | Run in offline fixture mode (`--offline`) or live web scraping mode (`--no-offline`). |
+| | `--provider` | `str` | `auto` | LLM provider: `openrouter`, `openai`, `heuristics`, or `auto` (auto-detects from env). |
+| | `--model` | `str` | `None` | Specific model identifier (e.g. `anthropic/claude-3.5-sonnet`, `openai/gpt-4o-mini`). |
+| | `--api-key` | `str` | `None` | Direct API key override (defaults to `OPENROUTER_API_KEY` / `OPENAI_API_KEY` env). |
+| | `--temperature` | `float` | `0.1` | Sampling temperature for LLM reasoning (0.0 to 1.0). |
 | | `--db-path` | `str` | `radar.db` | Path to the SQLite knowledge base file. |
 | | `--output-dir` | `str` | `reports` | Directory where HTML digests and markdown reports are saved. |
 | | `--markdown-output` | `str` | `sample_bd_output.md` | Path for the executive candidate Markdown deliverable. |
@@ -287,29 +341,29 @@ usage: run_scan.py [-h] [-j {NZ,AU,ALL}] [-m MAX_ITEMS] [--offline | --no-offlin
 
 ### Example Commands
 
-#### 1. Default Offline Scan (All Jurisdictions, Top 10)
+#### 1. Live Multi-Agent Scan with OpenRouter (Claude 3.5 Sonnet)
 ```bash
-python run_scan.py
+python run_scan.py --provider openrouter --model anthropic/claude-3.5-sonnet
 ```
 
-#### 2. New Zealand Only Scan with Top 5 Items
+#### 2. Live Scan with OpenRouter (Gemini 2.5 Flash)
+```bash
+python run_scan.py --model google/gemini-2.5-flash
+```
+
+#### 3. Default Fast Offline Scan (All Jurisdictions, Top 10)
+```bash
+python run_scan.py --offline
+```
+
+#### 4. New Zealand Only Scan with Top 5 Items
 ```bash
 python run_scan.py -j NZ -m 5
 ```
 
-#### 3. Australia Only Scan
-```bash
-python run_scan.py -j AU
-```
-
-#### 4. Live Web Scraping Mode (Requires Internet Connection)
+#### 5. Live Web Feeds Mode (Real Government RSS Scraping)
 ```bash
 python run_scan.py --no-offline -j ALL
-```
-
-#### 5. Force Re-seed Knowledge Base and Output to Custom Directory
-```bash
-python run_scan.py --seed --output-dir custom_reports --markdown-output executive_brief.md
 ```
 
 ---
@@ -544,10 +598,11 @@ pytest -v
 pytest --cov=src --cov-report=term-missing
 ```
 
-### Test Suite Structure (67 Passing Tests)
+### Test Suite Structure (74 Passing Tests)
 
 - **Database & Knowledge Base (`tests/test_db.py`, `tests/test_db_queries.py`)**: Schema creation, idempotent seeding of A+C service lines and clients, CRUD operations, multi-token client search, and relational filtering.
 - **Ingestion & Normalization (`tests/test_hasher.py`, `tests/test_fetcher.py`, `tests/test_ingestion_engine.py`)**: Deterministic SHA-256 hashing, HTML sanitization, feed parsing, jurisdiction filtering, offline fixture fallback, and duplicate suppression.
+- **LLM Factory & OpenRouter Integration (`tests/test_llm_factory.py`)**: OpenRouter / OpenAI provider resolution, environment variable priority, masked diagnostic status, and mock structured LLM pipeline execution.
 - **Multi-Agent Pipeline (`tests/test_filter_agent.py`, `tests/test_analyzer_agent.py`, `tests/test_matcher_agent.py`, `tests/test_scoring_agent.py`, `tests/test_pipeline_orchestrator.py`, `tests/test_pipeline_models.py`)**:
   - Noise filter rejection of ceremonial events and acceptance of policy signals.
   - Strict demarcation of verified facts vs. strategic interpretation.
@@ -556,7 +611,7 @@ pytest --cov=src --cov-report=term-missing
 - **Link QA Validation (`tests/test_link_validator.py`)**: Government domain verification, URL syntax validation, and HTTP reachability checks.
 - **Briefing & Outreach (`tests/test_pitch_generator.py`)**: Salutation formatting, custom angle injection, past engagement references, and ready-to-send email drafting.
 - **Deliverable Compilers (`tests/test_markdown_generator.py`, `tests/test_html_generator.py`, `tests/test_report_compiler.py`)**: 6-question Markdown compliance, responsive HTML rendering, score breakdown bars, and file persistence.
-- **FastMCP Server (`tests/test_mcp_server.py`)**: Tool registration, parameter validation, scan execution, opportunity querying, pitch brief generation, and client context updates.
+- **FastMCP Server (`tests/test_mcp_server.py`)**: Tool registration, diagnostic status inspection, parameter validation, scan execution, opportunity querying, pitch brief generation, and client context updates.
 - **CLI Runner (`tests/test_cli_runner.py`)**: CLI argument parsing, end-to-end execution, and console output formatting.
 
 ---
@@ -607,6 +662,7 @@ allen-clarke-bd-opportunity-radar/
 │       │   ├── __init__.py
 │       │   ├── analyzer_agent.py  # Agent 2: Impact & Sector Analyzer (Facts vs Interpretation)
 │       │   ├── filter_agent.py    # Agent 1: Ingestion Noise Filter
+│       │   ├── llm.py             # LLM Factory & OpenRouter / OpenAI provider integration
 │       │   ├── matcher_agent.py   # Agent 3: A+C Service Line & Client Matcher
 │       │   ├── models.py          # Pipeline Pydantic data schemas
 │       │   ├── orchestrator.py    # 4-Agent Pipeline Orchestrator
@@ -619,7 +675,7 @@ allen-clarke-bd-opportunity-radar/
 │           ├── html_generator.py  # Responsive HTML Email Digest generator
 │           ├── markdown_generator.py # Executive Markdown report generator
 │           └── models.py          # Reporting metadata models
-└── tests/                       # Complete pytest test suite (67 tests)
+└── tests/                       # Complete pytest test suite (74 tests)
     ├── conftest.py
     ├── test_analyzer_agent.py
     ├── test_cli_runner.py
@@ -631,6 +687,7 @@ allen-clarke-bd-opportunity-radar/
     ├── test_html_generator.py
     ├── test_ingestion_engine.py
     ├── test_link_validator.py
+    ├── test_llm_factory.py
     ├── test_markdown_generator.py
     ├── test_matcher_agent.py
     ├── test_mcp_server.py

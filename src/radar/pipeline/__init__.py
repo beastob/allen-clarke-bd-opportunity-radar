@@ -3,6 +3,7 @@
 from radar.pipeline.analyzer_agent import ImpactAnalyzerAgent
 from radar.pipeline.filter_agent import IngestionFilterAgent
 from radar.pipeline.matcher_agent import ServiceMatcherAgent
+from radar.pipeline.llm import get_llm, get_llm_status
 from radar.pipeline.models import (
     BDOpportunity,
     FilterResult,
@@ -29,4 +30,6 @@ __all__ = [
     "OpportunityScore",
     "BDOpportunity",
     "PipelineResult",
+    "get_llm",
+    "get_llm_status",
 ]

@@ -48,7 +48,8 @@ class FeedFetcher:
 
         try:
             headers = {
-                "User-Agent": "AllenClarke-BDRadar/1.0 (Public Policy Research; contact@allenandclarke.com)"
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                "Accept": "application/rss+xml, application/xml, text/xml, application/atom+xml, text/html, */*",
             }
             response = httpx.get(source.feed_url, timeout=timeout, headers=headers, follow_redirects=True)
             response.raise_for_status()

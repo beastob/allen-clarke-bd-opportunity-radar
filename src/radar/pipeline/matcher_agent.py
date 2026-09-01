@@ -151,7 +151,7 @@ class ServiceMatcherAgent:
 
         structured_llm = self.llm.with_structured_output(ServiceMatch)
         chain = prompt | structured_llm
-        return chain.invoke({
+        res: ServiceMatch = chain.invoke({
             "sl_context": sl_context,
             "client_context": client_context,
             "title": scan.title,
@@ -161,3 +161,25 @@ class ServiceMatcherAgent:
             "agencies": ", ".join(impact.affected_agencies),
             "obligations": "; ".join(impact.operational_obligations),
         })
+
+        # Reconcile primary_service_line_id to ensure it exists in taxonomy
+        valid_sl_ids = {s.id: s.name for s in service_lines}
+        if service_lines and res.primary_service_line_id not in valid_sl_ids:
+            matched_id = next(
+                (s.id for s in service_lines if s.name.lower() in res.primary_service_line_id.lower() or res.primary_service_line_id.lower() in s.name.lower()),
+                service_lines[0].id,
+            )
+            res.primary_service_line_id = matched_id
+
+        # Reconcile target_client_id if client name matched
+        if clients and not res.target_client_id and res.target_client_name:
+            c_lower = res.target_client_name.lower()
+            matched_client = next(
+                (c for c in clients if c.name.lower() in c_lower or c_lower in c.name.lower() or c.id.lower() == c_lower),
+                None,
+            )
+            if matched_client:
+                res.target_client_id = matched_client.id
+                res.target_client_name = matched_client.name
+
+        return res

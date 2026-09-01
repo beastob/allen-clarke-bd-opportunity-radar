@@ -80,6 +80,28 @@ Examples:
         )
 
     parser.add_argument(
+        "--provider",
+        choices=["openrouter", "openai", "heuristics", "auto"],
+        default="auto",
+        help="LLM provider for multi-agent reasoning ('openrouter', 'openai', 'heuristics', or 'auto'). Defaults to 'auto'.",
+    )
+    parser.add_argument(
+        "--model",
+        default=None,
+        help="LLM model identifier (e.g. 'anthropic/claude-3.5-sonnet', 'openai/gpt-4o-mini', 'google/gemini-2.5-flash').",
+    )
+    parser.add_argument(
+        "--api-key",
+        default=None,
+        help="LLM provider API key (defaults to OPENROUTER_API_KEY or OPENAI_API_KEY environment variables).",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=0.1,
+        help="LLM sampling temperature (default: 0.1).",
+    )
+    parser.add_argument(
         "--db-path",
         default="radar.db",
         help="Path to SQLite knowledge base database (default: 'radar.db').",
@@ -118,6 +140,10 @@ def run_scan(
     jurisdiction: str = "ALL",
     max_items: int = 10,
     offline: bool = True,
+    provider: Optional[str] = "auto",
+    model: Optional[str] = None,
+    api_key: Optional[str] = None,
+    temperature: float = 0.1,
     db_path: str = "radar.db",
     output_dir: str = "reports",
     markdown_output: str = "sample_bd_output.md",
@@ -140,6 +166,22 @@ def run_scan(
     if seed or not service_lines:
         seed_database(db=db, force=seed)
 
+    # Initialize LLM Provider (OpenRouter / OpenAI / Heuristics)
+    from radar.pipeline.llm import get_llm
+    selected_provider = None if provider == "auto" else provider
+    llm = get_llm(
+        provider=selected_provider,
+        model=model,
+        api_key=api_key,
+        temperature=temperature,
+    )
+
+    if llm is not None:
+        model_name = getattr(llm, "model_name", None) or getattr(llm, "model", "LLM")
+        reasoning_desc = f"Active LLM ({model_name})"
+    else:
+        reasoning_desc = "Deterministic Heuristics Engine (Fast Offline)"
+
     if not quiet:
         print("=" * 80)
         print("   ALLEN + CLARKE BUSINESS DEVELOPMENT OPPORTUNITY RADAR")
@@ -147,6 +189,7 @@ def run_scan(
         print("=" * 80)
         print(f" Jurisdictions : {jurisdiction}")
         print(f" Mode          : {'Offline Curated Fixtures' if offline else 'Live Web Feeds'}")
+        print(f" Reasoning     : {reasoning_desc}")
         print(f" Max Items     : {capped_max_items}")
         print(f" Database      : {db_path}")
         print(f" Output Dir    : {output_dir}")
@@ -168,13 +211,16 @@ def run_scan(
 
     # 3. Stage 2: 4-Agent Reasoning Pipeline
     if not quiet:
-        print("\n[2/3] Executing 4-Agent LangChain Opportunity Reasoning Pipeline...")
+        print(f"\n[2/3] Executing 4-Agent LangChain Opportunity Reasoning Pipeline ({reasoning_desc})...")
         print("      - Agent 1: Ingestion Noise Filter")
         print("      - Agent 2: Impact & Sector Analysis (Fact vs. Interpretation)")
         print("      - Agent 3: A+C Service Line & Client Registry Matching")
         print("      - Agent 4: Prioritisation Scoring (0-100) & BD Action Plan")
 
-    pipeline = OpportunityPipeline(db_manager=db)
+    pipeline = OpportunityPipeline(
+        db_manager=db,
+        llm=llm if llm is not None else "heuristics",
+    )
     pipeline_res = pipeline.run(
         jurisdiction=jurisdiction,
         max_items=capped_max_items,
@@ -264,6 +310,10 @@ def main(argv: Optional[List[str]] = None) -> int:
             jurisdiction=args.jurisdiction,
             max_items=args.max_items,
             offline=args.offline,
+            provider=args.provider,
+            model=args.model,
+            api_key=args.api_key,
+            temperature=args.temperature,
             db_path=args.db_path,
             output_dir=args.output_dir,
             markdown_output=args.markdown_output,
