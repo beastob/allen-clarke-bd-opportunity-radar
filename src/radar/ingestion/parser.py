@@ -4,9 +4,10 @@ import html
 import re
 import time
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 from bs4 import BeautifulSoup
 from radar.ingestion.hasher import compute_content_hash, normalize_text
+from radar.ingestion.registry import SourceConfig
 from radar.models import FeedItem
 
 
@@ -20,7 +21,7 @@ def clean_html_text(html_content: Optional[str]) -> str:
     except Exception:
         # Fallback to regex tag stripping
         text = re.sub(r"<[^>]+>", " ", html_content)
-    
+
     text = html.unescape(text)
     return normalize_text(text)
 
@@ -38,7 +39,6 @@ def extract_published_date(entry: Dict[str, Any]) -> str:
     # Try raw string
     raw_date = entry.get("published") or entry.get("updated")
     if raw_date:
-        # Try common formats
         for fmt in (
             "%a, %d %b %Y %H:%M:%S %z",
             "%a, %d %b %Y %H:%M:%S %Z",
@@ -60,11 +60,21 @@ def extract_published_date(entry: Dict[str, Any]) -> str:
 
 def parse_feed_entry(
     entry: Dict[str, Any],
-    source_id: str,
-    source_name: str,
-    jurisdiction: str,
+    source_or_id: Optional[Union[SourceConfig, str]] = None,
+    source_name: Optional[str] = None,
+    jurisdiction: Optional[str] = None,
+    source_id: Optional[str] = None,
 ) -> FeedItem:
-    """Parses a single feedparser entry dictionary into a structured FeedItem."""
+    """Parses a feedparser entry into a structured FeedItem."""
+    if isinstance(source_or_id, SourceConfig):
+        resolved_source_id = source_or_id.id
+        resolved_name = source_or_id.name
+        resolved_jur = source_or_id.jurisdiction
+    else:
+        resolved_source_id = source_id or (source_or_id if isinstance(source_or_id, str) else "unknown-source")
+        resolved_name = source_name or resolved_source_id
+        resolved_jur = jurisdiction or "NZ"
+
     title = clean_html_text(entry.get("title", "Untitled Policy Announcement"))
     url = entry.get("link", "")
     entry_id = str(entry.get("id") or entry.get("guid") or url)
@@ -90,9 +100,9 @@ def parse_feed_entry(
 
     return FeedItem(
         id=entry_id,
-        source_id=source_id,
-        source_name=source_name,
-        jurisdiction=jurisdiction,
+        source_id=resolved_source_id,
+        source_name=resolved_name,
+        jurisdiction=resolved_jur,  # type: ignore
         title=title,
         url=url,
         published_date=published_date,

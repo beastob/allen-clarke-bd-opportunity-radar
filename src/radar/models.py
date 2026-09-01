@@ -1,8 +1,13 @@
 """Domain models for Allen + Clarke Opportunity Radar."""
 
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
+
+JurisdictionType = Literal["NZ", "AU", "ALL"]
+ScanStatusType = Literal["raw", "processed", "filtered_noise", "error"]
+OpportunityStatusType = Literal["identified", "pitched", "won", "archived"]
+ClientTierType = Literal["Commonwealth", "Ministry", "Crown Entity", "State/Territory", "Local", "Other"]
 
 
 class ServiceLine(BaseModel):
@@ -17,8 +22,8 @@ class ServiceLine(BaseModel):
 class Client(BaseModel):
     id: str
     name: str
-    jurisdiction: str  # NZ, AU, ALL
-    tier: str  # Commonwealth, Ministry, Crown Entity, State/Territory, Local
+    jurisdiction: JurisdictionType  # NZ, AU, ALL
+    tier: ClientTierType
     sector: str
     key_divisions: List[str] = Field(default_factory=list)
     past_engagements: List[str] = Field(default_factory=list)
@@ -31,7 +36,7 @@ class FeedItem(BaseModel):
     id: str
     source_id: str
     source_name: str
-    jurisdiction: str  # NZ, AU
+    jurisdiction: Literal["NZ", "AU"]
     title: str
     url: str
     published_date: str
@@ -45,21 +50,21 @@ class ScanRecord(BaseModel):
     content_hash: str
     source_id: str
     source_name: str
-    jurisdiction: str
+    jurisdiction: Literal["NZ", "AU"]
     title: str
     url: str
     published_date: str
     summary: str
     raw_content: str
     ingested_at: Optional[str] = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
-    status: str = "raw"  # raw, processed, filtered_noise, error
+    status: ScanStatusType = "raw"
 
 
 class OpportunityRecord(BaseModel):
     id: str
     scan_id: Optional[str] = None
     title: str
-    jurisdiction: str
+    jurisdiction: JurisdictionType
     target_client_id: Optional[str] = None
     primary_service_line_id: Optional[str] = None
     verified_facts: str = ""
@@ -70,7 +75,7 @@ class OpportunityRecord(BaseModel):
     total_score: int = Field(ge=0, le=100, default=0)
     conversation_starter: str = ""
     target_contact_persona: str = ""
-    status: str = "identified"  # identified, pitched, won, archived
+    status: OpportunityStatusType = "identified"
     created_at: Optional[str] = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     updated_at: Optional[str] = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 

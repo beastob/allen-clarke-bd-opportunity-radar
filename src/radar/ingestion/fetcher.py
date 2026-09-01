@@ -21,6 +21,17 @@ class FeedFetcher:
         else:
             self.fixtures_dir = Path(__file__).parent.parent / "data" / "fixtures"
 
+    def _parse_entries(self, parsed: feedparser.FeedParserDict, source: SourceConfig) -> List[FeedItem]:
+        """Transforms parsed feed entries into structured FeedItem models."""
+        items = []
+        for entry in parsed.entries:
+            item = parse_feed_entry(
+                entry=entry,
+                source_or_id=source,
+            )
+            items.append(item)
+        return items
+
     def fetch_source(
         self,
         source_id: str,
@@ -42,22 +53,13 @@ class FeedFetcher:
             response = httpx.get(source.feed_url, timeout=timeout, headers=headers, follow_redirects=True)
             response.raise_for_status()
             parsed = feedparser.parse(response.text)
-            
-            # If live feed parser returned no entries or bozo error on live fetch, check if fallback needed
-            if not parsed.entries:
-                logger.warning(f"Live feed for {source.id} returned 0 entries; falling back to fixture.")
+
+            # If there was a parsing error/malformed feed, fall back to fixture
+            if getattr(parsed, "bozo", 0) and not parsed.entries:
+                logger.warning(f"Feed parser error for {source.id}; falling back to fixture.")
                 return self._fetch_fixture(source)
 
-            items = []
-            for entry in parsed.entries:
-                item = parse_feed_entry(
-                    entry=entry,
-                    source_id=source.id,
-                    source_name=source.name,
-                    jurisdiction=source.jurisdiction,
-                )
-                items.append(item)
-            return items
+            return self._parse_entries(parsed, source)
 
         except Exception as e:
             logger.warning(f"Network fetch failed for {source.id} ({e}); falling back to offline fixture.")
@@ -72,17 +74,7 @@ class FeedFetcher:
 
         xml_content = fixture_path.read_text(encoding="utf-8")
         parsed = feedparser.parse(xml_content)
-
-        items = []
-        for entry in parsed.entries:
-            item = parse_feed_entry(
-                entry=entry,
-                source_id=source.id,
-                source_name=source.name,
-                jurisdiction=source.jurisdiction,
-            )
-            items.append(item)
-        return items
+        return self._parse_entries(parsed, source)
 
     def fetch_all(
         self,
