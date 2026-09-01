@@ -13,6 +13,7 @@ from radar.pipeline.models import (
 )
 from radar.pipeline.orchestrator import OpportunityPipeline
 from radar.pipeline.scoring_agent import PrioritisationAgent
+from radar.pipeline.validator import LinkValidationResult, LinkValidator
 
 __all__ = [
     "OpportunityPipeline",
@@ -20,6 +21,8 @@ __all__ = [
     "ImpactAnalyzerAgent",
     "ServiceMatcherAgent",
     "PrioritisationAgent",
+    "LinkValidator",
+    "LinkValidationResult",
     "FilterResult",
     "ImpactAnalysis",
     "ServiceMatch",

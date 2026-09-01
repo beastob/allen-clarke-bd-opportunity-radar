@@ -1,7 +1,7 @@
 """Multi-Agent Opportunity Reasoning Pipeline Orchestrator.
 
 Coordinates Ingestion Filtering, Impact & Sector Analysis, Service Matching,
-and Prioritisation & BD Action formulation.
+Prioritisation & BD Action formulation, and Post-Prioritisation Link QA Validation.
 """
 
 from typing import Any, List, Optional
@@ -12,10 +12,11 @@ from radar.pipeline.filter_agent import IngestionFilterAgent
 from radar.pipeline.matcher_agent import ServiceMatcherAgent
 from radar.pipeline.models import BDOpportunity, PipelineResult
 from radar.pipeline.scoring_agent import PrioritisationAgent
+from radar.pipeline.validator import LinkValidator
 
 
 class OpportunityPipeline:
-    """End-to-end 4-Agent LangChain Opportunity Reasoning Pipeline."""
+    """End-to-end 4-Agent LangChain Opportunity Reasoning Pipeline with Link QA."""
 
     def __init__(
         self,
@@ -25,20 +26,23 @@ class OpportunityPipeline:
         analyzer_agent: Optional[ImpactAnalyzerAgent] = None,
         matcher_agent: Optional[ServiceMatcherAgent] = None,
         scoring_agent: Optional[PrioritisationAgent] = None,
+        link_validator: Optional[LinkValidator] = None,
     ):
-        """Initializes the multi-agent pipeline with storage and agent instances."""
+        """Initializes the multi-agent pipeline with storage, agents, and QA validator."""
         self.db_manager = db_manager or DatabaseManager()
         self.llm = llm
         self.filter_agent = filter_agent or IngestionFilterAgent(llm=llm)
         self.analyzer_agent = analyzer_agent or ImpactAnalyzerAgent(llm=llm)
         self.matcher_agent = matcher_agent or ServiceMatcherAgent(llm=llm)
         self.scoring_agent = scoring_agent or PrioritisationAgent(llm=llm)
+        self.link_validator = link_validator or LinkValidator()
 
     def run(
         self,
         scans: Optional[List[ScanRecord]] = None,
         jurisdiction: Optional[str] = None,
         max_items: int = 10,
+        verify_http_links: bool = False,
     ) -> PipelineResult:
         """Executes the 4-agent reasoning pipeline across policy scans.
 
@@ -46,6 +50,7 @@ class OpportunityPipeline:
         2. Impact & Sector Analysis with Fact vs Interpretation (Agent 2)
         3. A+C Service Line & Client Matching (Agent 3)
         4. Prioritisation, BD Action Formulation & Max-10 Capping (Agent 4)
+        5. Post-Prioritisation Link QA Gate (Option 2)
         """
         # Load scans from database if not explicitly provided
         if scans is None:
@@ -100,15 +105,22 @@ class OpportunityPipeline:
             max_items=max_items,
         )
 
+        # Stage 5: Post-Prioritisation Link QA Validation Gate (Option 2)
+        validated_opportunities = self.link_validator.validate_opportunities(
+            top_opportunities,
+            strict_syntax=True,
+            verify_http=verify_http_links,
+        )
+
         # Persist qualified opportunities to SQLite
         saved_count = 0
-        for opp in top_opportunities:
+        for opp in validated_opportunities:
             self.db_manager.save_opportunity(opp.to_db_record())
             saved_count += 1
 
         return PipelineResult(
             processed_count=processed_count,
             filtered_noise_count=filtered_noise_count,
-            opportunities=top_opportunities,
+            opportunities=validated_opportunities,
             saved_count=saved_count,
         )
