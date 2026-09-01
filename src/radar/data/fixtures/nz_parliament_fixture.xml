@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>New Zealand Parliament - Proposed Bills and Inquiries</title>
+    <link>https://www.parliament.nz</link>
+    <description>Proposed laws, Select Committee inquiries, and submission openings</description>
+    <language>en-NZ</language>
+
+    <item>
+      <title>Health and Disability Services (System Oversight and Standards) Amendment Bill</title>
+      <link>https://www.parliament.nz/en/pb/bills-and-laws/bills-proposed-laws/document/BILL_12345/health-disability-services-amendment-bill</link>
+      <description>&lt;p&gt;The Social Services and Community Committee invites public submissions on the Health and Disability Services Amendment Bill. The bill introduces mandatory quality reporting standards, clinical risk governance frameworks, and independent evaluation mandates for contracted community providers.&lt;/p&gt;</description>
+      <pubDate>Mon, 31 Aug 2026 10:00:00 +1200</pubDate>
+      <guid>https://www.parliament.nz/bills/BILL_12345</guid>
+    </item>
+
+    <item>
+      <title>Inquiry into Crown-Māori Environmental Co-governance and Consenting Frameworks</title>
+      <link>https://www.parliament.nz/en/pb/sc/business-before-committees/document/INQ_98765/inquiry-crown-maori-environmental-governance</link>
+      <description>&lt;p&gt;The Environment Select Committee has initiated a nationwide inquiry into iwi and hapū participation in natural resource consenting and Treaty partnership outcomes across regional councils.&lt;/p&gt;</description>
+      <pubDate>Fri, 28 Aug 2026 16:45:00 +1200</pubDate>
+      <guid>https://www.parliament.nz/inquiries/INQ_98765</guid>
+    </item>
+  </channel>
+</rss>

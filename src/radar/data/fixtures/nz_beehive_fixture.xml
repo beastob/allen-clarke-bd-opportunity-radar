@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Beehive.govt.nz - Ministerial Releases</title>
+    <link>https://www.beehive.govt.nz</link>
+    <description>Official releases from the New Zealand Government Executive</description>
+    <language>en-NZ</language>
+
+    <item>
+      <title>Government initiates independent review of public hospital planned care operating models</title>
+      <link>https://www.beehive.govt.nz/release/government-initiates-independent-review-public-hospital-planned-care-operating-models</link>
+      <description>&lt;p&gt;Minister of Health announces terms of reference for an independent operating model and commissioning review across Health New Zealand (Te Whatu Ora) to eliminate planned surgery waitlists and optimize regional clinical pathways.&lt;/p&gt;</description>
+      <dc:creator>Hon Dr Shane Reti</dc:creator>
+      <pubDate>Tue, 01 Sep 2026 08:30:00 +1200</pubDate>
+      <guid>https://www.beehive.govt.nz/release/planned-care-review-20260901</guid>
+    </item>
+
+    <item>
+      <title>Pacific fisheries resilience package launched with regional partners</title>
+      <link>https://www.beehive.govt.nz/release/pacific-fisheries-resilience-package-launched-regional-partners</link>
+      <description>&lt;p&gt;Minister for Foreign Affairs and Minister for Oceans and Fisheries announce a joint $14.5 million multi-year technical assistance initiative to evaluate and enhance sustainable fisheries monitoring and compliance across Polynesia and Melanesia.&lt;/p&gt;</description>
+      <dc:creator>Hon Winston Peters</dc:creator>
+      <pubDate>Mon, 31 Aug 2026 14:15:00 +1200</pubDate>
+      <guid>https://www.beehive.govt.nz/release/pacific-fisheries-resilience-20260831</guid>
+    </item>
+
+    <item>
+      <title>Regulatory impact assessment guidelines refreshed for emergency infrastructure consenting</title>
+      <link>https://www.beehive.govt.nz/release/regulatory-impact-assessment-guidelines-refreshed-emergency-infrastructure-consenting</link>
+      <description>&lt;p&gt;Minister for Regulation announces updated Cabinet regulatory impact statement requirements and mandatory cost-benefit evaluation criteria for major infrastructure projects.&lt;/p&gt;</description>
+      <dc:creator>Hon David Seymour</dc:creator>
+      <pubDate>Sun, 30 Aug 2026 11:00:00 +1200</pubDate>
+      <guid>https://www.beehive.govt.nz/release/regulatory-impact-guidelines-20260830</guid>
+    </item>
+  </channel>
+</rss>

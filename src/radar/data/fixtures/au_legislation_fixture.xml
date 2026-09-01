@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Federal Register of Legislation - Latest Acts and Instruments</title>
+    <link>https://www.legislation.gov.au</link>
+    <description>Newly registered Acts of the Commonwealth of Australia</description>
+    <language>en-AU</language>
+
+    <item>
+      <title>Aged Care Act 2026 (Act No. 45 of 2026)</title>
+      <link>https://www.legislation.gov.au/Details/C2026A00045</link>
+      <description>&lt;p&gt;An Act to establish a new person-centred regulatory framework for the funding, delivery, and quality governance of aged care services in Australia. Requires statutory review of system operating model within 24 months.&lt;/p&gt;</description>
+      <pubDate>Mon, 31 Aug 2026 15:00:00 +1000</pubDate>
+      <guid>https://www.legislation.gov.au/act/C2026A00045</guid>
+    </item>
+
+    <item>
+      <title>National Disability Insurance Scheme Amendment (Quality and Safeguards Framework) Rules 2026</title>
+      <link>https://www.legislation.gov.au/Details/F2026L00789</link>
+      <description>&lt;p&gt;Legislative instrument enacting enhanced risk screening and provider audit protocols across high-intensity disability supports.&lt;/p&gt;</description>
+      <pubDate>Sat, 29 Aug 2026 10:00:00 +1000</pubDate>
+      <guid>https://www.legislation.gov.au/instrument/F2026L00789</guid>
+    </item>
+  </channel>
+</rss>

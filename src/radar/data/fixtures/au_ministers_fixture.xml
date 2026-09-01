@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Ministers of the Commonwealth of Australia</title>
+    <link>https://ministers.pmc.gov.au</link>
+    <description>Media releases and strategic announcements from Australian Federal Ministers</description>
+    <language>en-AU</language>
+
+    <item>
+      <title>Commonwealth commits $38.2 million to transform national aged care regulatory oversight</title>
+      <link>https://ministers.health.gov.au/ministers/mark-butler-mp/media-releases/commonwealth-commits-382m-aged-care-regulatory-oversight</link>
+      <description>&lt;p&gt;Minister for Health and Aged Care Mark Butler today announced a comprehensive capability enhancement program for the Aged Care Quality and Safety Commission to implement the new rights-based Aged Care Act. An independent evaluation partner will be commissioned to assess provider transition readiness and compliance burden.&lt;/p&gt;</description>
+      <pubDate>Tue, 01 Sep 2026 07:00:00 +1000</pubDate>
+      <guid>https://ministers.health.gov.au/release/20260901-aged-care-oversight</guid>
+    </item>
+
+    <item>
+      <title>National Carer Strategy 2026-2036 released with cross-agency action plan</title>
+      <link>https://ministers.dss.gov.au/media-releases/national-carer-strategy-action-plan-2026</link>
+      <description>&lt;p&gt;Minister for Social Services Amanda Rishworth launched the 10-year National Carer Strategy, establishing an inter-departmental working group to align carer supports across NDIS, aged care, and Medicare, alongside a requirement for annual monitoring and evaluation reporting.&lt;/p&gt;</description>
+      <pubDate>Mon, 31 Aug 2026 12:30:00 +1000</pubDate>
+      <guid>https://ministers.dss.gov.au/release/20260831-carer-strategy</guid>
+    </item>
+
+    <item>
+      <title>Independent review of Australian Public Service consulting governance and evaluation frameworks</title>
+      <link>https://ministers.pmc.gov.au/media-releases/independent-review-aps-consulting-governance-2026</link>
+      <description>&lt;p&gt;Minister for the Public Service Katy Gallagher announces an evaluation of APS core capability frameworks and value-for-money metrics across strategic policy advisory procurements.&lt;/p&gt;</description>
+      <pubDate>Fri, 28 Aug 2026 09:15:00 +1000</pubDate>
+      <guid>https://ministers.pmc.gov.au/release/20260828-aps-consulting-review</guid>
+    </item>
+  </channel>
+</rss>
