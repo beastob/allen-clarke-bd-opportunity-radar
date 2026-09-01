@@ -1,0 +1,232 @@
+[
+  {
+    "id": "policy-regulation",
+    "name": "Policy + Regulation",
+    "description": "End-to-end policy development, regulatory impact statements (RIS), regulatory model design, legislation drafting instructions, public consultation, and large-scale submission analysis for public sector agencies.",
+    "keywords": [
+      "policy development",
+      "regulatory design",
+      "regulatory impact analysis",
+      "legislative reform",
+      "submission analysis",
+      "statutory review",
+      "Cabinet papers",
+      "cost recovery",
+      "compliance frameworks",
+      "licensing",
+      "standards design"
+    ],
+    "case_studies": [
+      {
+        "title": "Navigating 16,000 Submissions on Complex Health Reform - Therapeutics Products Bill",
+        "client": "NZ Ministry of Health (Manatū Hauora)",
+        "summary": "Analysed over 16,000 public and stakeholder submissions on the Therapeutic Products Bill, synthesizing critical issues across medical devices, medicines, and natural health products to inform legislative select committee deliberations.",
+        "impact": "Provided rigorous, thematic synthesis enabling evidence-based policymaking under intense public and industry scrutiny."
+      },
+      {
+        "title": "What 25,000 New Zealanders Said About the Fast-Track Approvals Bill",
+        "client": "NZ Ministry for the Environment & Parliament Select Committee",
+        "summary": "Processed, coded, and analysed 25,000+ public submissions on infrastructure fast-track consenting legislation to identify key constitutional, environmental, and Treaty balance considerations.",
+        "impact": "Delivered high-volume qualitative analysis at speed to support rapid legislative reporting cycles."
+      },
+      {
+        "title": "Supplementary Impact and Cost-Benefit Analysis for Regulating Aged Care",
+        "client": "AU Department of Health and Aged Care",
+        "summary": "Conducted regulatory impact analysis and cost-benefit modeling for the new regulatory model under the Aged Care Act reform, assessing sector compliance costs and quality standards.",
+        "impact": "Delivered compliant Office of Impact Analysis (OIA) documentation supporting nationwide aged care reform."
+      }
+    ]
+  },
+  {
+    "id": "evaluation-review",
+    "name": "Evaluation + Review",
+    "description": "Comprehensive program evaluations, realist evaluations, monitoring & evaluation (M&E) framework design, outcomes measurement, rapid evidence synthesis, and independent institutional reviews.",
+    "keywords": [
+      "program evaluation",
+      "monitoring and evaluation",
+      "M&E framework",
+      "realist evaluation",
+      "impact evaluation",
+      "process evaluation",
+      "value for money",
+      "outcomes framework",
+      "theory of change",
+      "program logic",
+      "independent review"
+    ],
+    "case_studies": [
+      {
+        "title": "Victorian Department of Health: Disability Liaison Officer Program Evaluation",
+        "client": "Victorian Department of Health",
+        "summary": "Evaluated the state-wide Disability Liaison Officer (DLO) program across Victorian health services, examining accessibility, healthcare navigation, and hospital outcomes for people with disabilities.",
+        "impact": "Informed recurrent funding decisions and future operating models for disability advocacy across public hospitals."
+      },
+      {
+        "title": "Delivering Clarity and Purpose: M&E Framework for Australia's Cancer Plan",
+        "client": "Cancer Australia / AU Department of Health and Aged Care",
+        "summary": "Designed the national Monitoring and Evaluation Framework for the Australian Cancer Plan, establishing 10-year equity and survivorship outcome metrics across Priority Populations.",
+        "impact": "Established whole-of-nation tracking system for cancer care disparities, especially for First Nations communities."
+      },
+      {
+        "title": "Community-Centered Evaluation of the Tuvalu Bilateral Development Programme (2018-2021)",
+        "client": "NZ Ministry of Foreign Affairs and Trade (MFAT)",
+        "summary": "Conducted a participatory, community-centered evaluation of New Zealand's development cooperation in Tuvalu across climate resilience, education, and public financial management.",
+        "impact": "Directly informed the next 5-year bilateral development partnership agreement."
+      }
+    ]
+  },
+  {
+    "id": "strategy-planning",
+    "name": "Strategy + Planning",
+    "description": "Target operating model (TOM) design, whole-of-system architecture, organizational strategy, logic modeling, corporate planning, and strategic roadmaps for public agencies and Crown entities.",
+    "keywords": [
+      "operating model",
+      "target operating model",
+      "TOM",
+      "strategic planning",
+      "systems design",
+      "logic model",
+      "strategic roadmap",
+      "agency design",
+      "public sector governance",
+      "functional review"
+    ],
+    "case_studies": [
+      {
+        "title": "Demystifying Operating Models: Aligning Strategy and Execution in Public Agencies",
+        "client": "Cross-Agency Public Sector Leaders (NZ & AU)",
+        "summary": "Developed target operating model frameworks linking legislative mandates, capabilities, processes, and service delivery channels for reforming agencies.",
+        "impact": "Streamlined service delivery structures across multiple state and federal entities."
+      },
+      {
+        "title": "Supporting Unpaid Carers: Foundation for Australia's National Carer Strategy",
+        "client": "AU Department of Social Services (DSS)",
+        "summary": "Developed strategic foundations and system-level consultation insights for the National Carer Strategy, aligning service ecosystems across disability, aged care, and income support.",
+        "impact": "Shaped national policy and inter-agency strategy for over 2.65 million unpaid carers."
+      }
+    ]
+  },
+  {
+    "id": "transformation-governance",
+    "name": "Business Change & Public Sector Governance",
+    "description": "Public sector reform implementation, structural reorganization, business change management, machinery-of-government transition support, board governance reviews, and risk frameworks.",
+    "keywords": [
+      "transformation",
+      "business change",
+      "machinery of government",
+      "reorganization",
+      "public sector reform",
+      "governance review",
+      "board governance",
+      "change management",
+      "operational readiness"
+    ],
+    "case_studies": [
+      {
+        "title": "When Well-Run Agencies Aren't Enough: Designing for the Whole System",
+        "client": "Australian Public Service & State Government Agencies",
+        "summary": "Led structural governance design and whole-of-system change initiatives across interrelated social sector portfolios.",
+        "impact": "Broke down policy silos and improved multi-agency joint commissioning."
+      }
+    ]
+  },
+  {
+    "id": "kaupapa-maori-pacific",
+    "name": "Kaupapa Māori & Pacific Policy",
+    "description": "Te Tiriti o Waitangi / Treaty of Waitangi policy analysis, Kaupapa Māori research and evaluation, Māori Crown relations, Pacific island development cooperation, and cultural equity frameworks.",
+    "keywords": [
+      "Kaupapa Māori",
+      "Te Tiriti",
+      "Treaty of Waitangi",
+      "Māori Crown relations",
+      "Pacific policy",
+      "Pacific development",
+      "indigenous equity",
+      "mana whenua",
+      "iwi engagement",
+      "whānau ora",
+      "talanoa"
+    ],
+    "case_studies": [
+      {
+        "title": "The Nation's Voice Heard: Analysing 292,527 Submissions on the Treaty Principles Bill",
+        "client": "NZ Ministry of Justice & Justice Committee",
+        "summary": "Designed and executed a massive qualitative and quantitative analysis pipeline for 292,527 public submissions on the Treaty Principles Bill, capturing constitutional, cultural, and legal perspectives.",
+        "impact": "Provided impartial, robust reporting on the largest public submission process in New Zealand parliamentary history."
+      },
+      {
+        "title": "Building Sustainable Fisheries Capacity Across the Pacific: Review of Te Pātuitanga",
+        "client": "NZ Ministry for Primary Industries (MPI) & Pacific Island Fisheries Agencies",
+        "summary": "Reviewed the Te Pātuitanga partnership strengthening coastal and oceanic fisheries governance across 7 Pacific Island nations.",
+        "impact": "Enhanced regional fisheries sustainability, compliance capability, and food security."
+      }
+    ]
+  },
+  {
+    "id": "performance-optimisation",
+    "name": "Performance + Optimisation",
+    "description": "Service delivery efficiency reviews, business process optimization, workforce planning, resource allocation modeling, and regulatory performance benchmarking.",
+    "keywords": [
+      "performance review",
+      "process optimisation",
+      "efficiency",
+      "service delivery",
+      "workforce planning",
+      "cost optimization",
+      "productivity",
+      "KPI frameworks"
+    ],
+    "case_studies": [
+      {
+        "title": "Regulatory Service Delivery Model Optimization",
+        "client": "State & Commonwealth Regulators",
+        "summary": "Audited end-to-end licensing and compliance workflows to identify bottleneck areas and automate routine compliance touchpoints.",
+        "impact": "Reduced application turnaround times by 35% while strengthening risk-based compliance oversight."
+      }
+    ]
+  },
+  {
+    "id": "risk-management",
+    "name": "Risk Management",
+    "description": "Enterprise risk frameworks, regulatory risk profiling, public policy risk analysis, clinical and care governance risk assessments, and compliance auditing.",
+    "keywords": [
+      "risk management",
+      "regulatory risk",
+      "enterprise risk",
+      "risk appetite",
+      "governance risk",
+      "clinical governance",
+      "compliance audit"
+    ],
+    "case_studies": [
+      {
+        "title": "Systemic Risk Framework for Human Services Delivery",
+        "client": "State Social Services Department",
+        "summary": "Designed risk assessment tools and early warning indicators for contracted community services providers.",
+        "impact": "Improved provider compliance and safeguarded vulnerable service users."
+      }
+    ]
+  },
+  {
+    "id": "secretariat-service-delivery",
+    "name": "Secretariat + Service Delivery",
+    "description": "Independent secretariat services for ministerial reviews, royal commissions, inquiry panels, advisory committees, and outsourced public sector program administration.",
+    "keywords": [
+      "secretariat",
+      "inquiry secretariat",
+      "advisory committee",
+      "ministerial panel",
+      "service delivery",
+      "program administration",
+      "stakeholder management"
+    ],
+    "case_studies": [
+      {
+        "title": "Independent Ministerial Advisory Group Secretariat Support",
+        "client": "Commonwealth Health Portfolio",
+        "summary": "Provided end-to-end policy, technical drafting, stakeholder coordination, and meeting secretariat support for high-profile ministerial advisory council.",
+        "impact": "Ensured seamless on-time delivery of statutory advisory reports to the Minister."
+      }
+    ]
+  }
+]

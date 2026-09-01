@@ -1,0 +1,323 @@
+[
+  {
+    "id": "nz-moh",
+    "name": "Ministry of Health (Manatū Hauora)",
+    "jurisdiction": "NZ",
+    "tier": "Ministry",
+    "sector": "Health & Disability",
+    "key_divisions": [
+      "System Strategy and Policy",
+      "Public Health Agency",
+      "Regulatory Services & Medsafe",
+      "Māori Health Policy",
+      "Evidence and Analytics"
+    ],
+    "past_engagements": [
+      "Therapeutic Products Bill public submission analysis (16,000+ submissions)",
+      "Smokefree 2025 regulatory impact analysis",
+      "Public Health Act statutory review"
+    ],
+    "relationship_notes": "Established prime tier client in Wellington. High receptivity to policy design, regulatory consultation analysis, and independent clinical governance reviews."
+  },
+  {
+    "id": "nz-justice",
+    "name": "Ministry of Justice (Tāhū o te Ture)",
+    "jurisdiction": "NZ",
+    "tier": "Ministry",
+    "sector": "Justice & Māori Crown Relations",
+    "key_divisions": [
+      "Policy Group",
+      "Crown-Māori Relations Unit",
+      "Courts and Tribunals",
+      "Legal and Constitutional Policy"
+    ],
+    "past_engagements": [
+      "Treaty Principles Bill public submissions analysis (292,527 submissions)",
+      "Coronial Services Review",
+      "Legal Aid Service Delivery Evaluation"
+    ],
+    "relationship_notes": "Key client for high-profile legislative review and large-scale public submission analysis under parliamentary scrutiny."
+  },
+  {
+    "id": "nz-mpi",
+    "name": "Ministry for Primary Industries (Manatū Ahu Matua)",
+    "jurisdiction": "NZ",
+    "tier": "Ministry",
+    "sector": "Agriculture, Fisheries & Biosecurity",
+    "key_divisions": [
+      "Fisheries New Zealand",
+      "Biosecurity New Zealand",
+      "Agriculture and Investment Services",
+      "Policy and Trade"
+    ],
+    "past_engagements": [
+      "Review of Te Pātuitanga Pacific Fisheries Capacity Programme",
+      "Biosecurity Cost Recovery Review",
+      "Primary Sector Climate Adaptation Evaluation"
+    ],
+    "relationship_notes": "Regular engagements across Fisheries and Pacific regional capacity building."
+  },
+  {
+    "id": "nz-mfe",
+    "name": "Ministry for the Environment (Manatū Mō Te Taiao)",
+    "jurisdiction": "NZ",
+    "tier": "Ministry",
+    "sector": "Environment & Natural Resources",
+    "key_divisions": [
+      "Resource Management Reform",
+      "Climate Change Directorate",
+      "Environmental Management & Consenting",
+      "Waste Minimisation & Circular Economy"
+    ],
+    "past_engagements": [
+      "Fast-Track Approvals Bill submission analysis (25,000 submissions)",
+      "Resource Management Act reform advisory",
+      "National Policy Statement Freshwater Implementation Review"
+    ],
+    "relationship_notes": "Fast-moving environmental and consenting policy reforms require rapid turnaround analysis."
+  },
+  {
+    "id": "nz-mfat",
+    "name": "Ministry of Foreign Affairs and Trade (Manatū Aorere)",
+    "jurisdiction": "NZ",
+    "tier": "Ministry",
+    "sector": "Foreign Affairs & Pacific Development",
+    "key_divisions": [
+      "Pacific Development Group",
+      "International Development Cooperation",
+      "Trade and Economic Group",
+      "Strategic Policy"
+    ],
+    "past_engagements": [
+      "Community-Centered Evaluation of Tuvalu Bilateral Programme (2018-2021)",
+      "Pacific Regional Health Security Review",
+      "Polynesian Climate Resilience Fund Evaluation"
+    ],
+    "relationship_notes": "Strong historical presence in Pacific bilateral development evaluations."
+  },
+  {
+    "id": "nz-tpk",
+    "name": "Te Puni Kōkiri (Ministry of Māori Development)",
+    "jurisdiction": "NZ",
+    "tier": "Ministry",
+    "sector": "Māori Development & Wellbeing",
+    "key_divisions": [
+      "Policy and Strategy",
+      "Whānau Ora",
+      "Regional Partnerships",
+      "Māori Enterprise & Economy"
+    ],
+    "past_engagements": [
+      "Whānau Ora Outcomes Evaluation",
+      "Māori Housing Network Programme Review",
+      "Iwi Engagement Framework Guidance"
+    ],
+    "relationship_notes": "Core alignment with A+C Kaupapa Māori practice and community-based evaluation methods."
+  },
+  {
+    "id": "nz-healthnz",
+    "name": "Health New Zealand (Te Whatu Ora)",
+    "jurisdiction": "NZ",
+    "tier": "Crown Entity",
+    "sector": "Health & Healthcare Delivery",
+    "key_divisions": [
+      "Hospital & Specialist Services",
+      "Commissioning Directorate",
+      "Public Health & Prevention",
+      "Workforce and Service Planning"
+    ],
+    "past_engagements": [
+      "Regional Hospital Operating Model Transition",
+      "Clinical Network Governance Review",
+      "Planned Care Backlog Reduction Review"
+    ],
+    "relationship_notes": "Major reform entity undergoing restructuring; high demand for target operating models and service optimization."
+  },
+  {
+    "id": "nz-treasury",
+    "name": "The Treasury (Te Tai Ōhanga)",
+    "jurisdiction": "NZ",
+    "tier": "Ministry",
+    "sector": "Finance, Economy & Regulation",
+    "key_divisions": [
+      "Regulatory Quality Team",
+      "Public Finance Directorate",
+      "Social Policy & Wellbeing",
+      "Infrastructure & Crown Resources"
+    ],
+    "past_engagements": [
+      "Regulatory Impact Analysis System Guidance Review",
+      "Living Standards Framework Evaluation",
+      "Cost Benefit Analysis Quality Assurance"
+    ],
+    "relationship_notes": "Authoritative standard-setter for RIS and public value frameworks across NZ government."
+  },
+  {
+    "id": "au-health",
+    "name": "Department of Health and Aged Care",
+    "jurisdiction": "AU",
+    "tier": "Commonwealth",
+    "sector": "Health, Aged Care & Sport",
+    "key_divisions": [
+      "Ageing and Aged Care Group",
+      "Health Resourcing & Medical Benefits",
+      "Primary Care & First Nations Health",
+      "Office of Health Technology Assessment",
+      "Regulatory Policy and Review"
+    ],
+    "past_engagements": [
+      "Supplementary Impact Analysis for New Aged Care Act Regulatory Model",
+      "National Immunisation Strategy Evaluation",
+      "Primary Health Network (PHN) Funding Formula Review"
+    ],
+    "relationship_notes": "Large strategic client in Canberra. Ongoing opportunities in aged care regulatory reform and health program evaluation."
+  },
+  {
+    "id": "au-dss",
+    "name": "Department of Social Services",
+    "jurisdiction": "AU",
+    "tier": "Commonwealth",
+    "sector": "Social Services & Disability",
+    "key_divisions": [
+      "Disability and Carers Group",
+      "Families and Communities",
+      "Social Security & Welfare Reform",
+      "Housing and Homelessness"
+    ],
+    "past_engagements": [
+      "National Carer Strategy Consultation and Foundation Modeling",
+      "Targeted Community Care Program Evaluation",
+      "National Disability Strategy Outcomes Framework"
+    ],
+    "relationship_notes": "Strategic focus on cross-sector social policy, disability strategy, and lived-experience consultation."
+  },
+  {
+    "id": "au-ag",
+    "name": "Attorney-General's Department",
+    "jurisdiction": "AU",
+    "tier": "Commonwealth",
+    "sector": "Justice, Integrity & Legal Services",
+    "key_divisions": [
+      "Integrity and Anti-Corruption",
+      "Civil Justice and Corporate Law",
+      "Criminal Justice & National Security",
+      "Office of Impact Analysis (OIA)"
+    ],
+    "past_engagements": [
+      "Privacy Act Reform Impact Assessment",
+      "Administrative Review Reform Analysis",
+      "Family Law System Governance Review"
+    ],
+    "relationship_notes": "Central agency driving statutory compliance and regulatory impact standard oversight."
+  },
+  {
+    "id": "au-pmc",
+    "name": "Department of the Prime Minister and Cabinet (PM&C)",
+    "jurisdiction": "AU",
+    "tier": "Commonwealth",
+    "sector": "Central Governance & First Nations",
+    "key_divisions": [
+      "Social Policy Directorate",
+      "Office for Women",
+      "APS Reform Office",
+      "National Indigenous Australians Agency (NIAA)"
+    ],
+    "past_engagements": [
+      "APS Capability and Consulting Spend Reduction Review",
+      "Closing the Gap Priority Reform Implementation Review",
+      "Cabinet Policy Review Mechanisms"
+    ],
+    "relationship_notes": "Apex Commonwealth department guiding APS reform, inter-departmental governance, and national priorities."
+  },
+  {
+    "id": "au-ndis-commission",
+    "name": "NDIS Quality and Safeguards Commission",
+    "jurisdiction": "AU",
+    "tier": "Commonwealth",
+    "sector": "Disability & Quality Safeguards",
+    "key_divisions": [
+      "Regulatory Operations",
+      "Complaints and Provider Compliance",
+      "Quality and Practice Improvement",
+      "Strategy and Engagement"
+    ],
+    "past_engagements": [
+      "Provider Registration and Regulatory Model Review",
+      "Restrictive Practices Oversight Framework Design",
+      "Workforce Capability in Disability Safeguarding"
+    ],
+    "relationship_notes": "Rapidly growing statutory regulator requiring compliance frameworks and risk modeling."
+  },
+  {
+    "id": "au-cancer",
+    "name": "Cancer Australia",
+    "jurisdiction": "AU",
+    "tier": "Commonwealth",
+    "sector": "Health & Clinical Quality",
+    "key_divisions": [
+      "Cancer Strategy & Implementation",
+      "Evidence-Based Information",
+      "Clinical and Priority Populations"
+    ],
+    "past_engagements": [
+      "Australian Cancer Plan 10-Year Monitoring and Evaluation Framework",
+      "Lung Cancer Screening Program Equity Evaluation"
+    ],
+    "relationship_notes": "Longstanding M&E partnership with high visibility in national clinical equity."
+  },
+  {
+    "id": "vic-health",
+    "name": "Victorian Department of Health",
+    "jurisdiction": "AU",
+    "tier": "State/Territory",
+    "sector": "Health & Human Services",
+    "key_divisions": [
+      "Health Infrastructure & Strategy",
+      "Commissioning and System Performance",
+      "Public Health and Infection Control",
+      "Mental Health and Wellbeing"
+    ],
+    "past_engagements": [
+      "Victorian Disability Liaison Officer (DLO) Program Evaluation",
+      "Royal Commission into Mental Health Reform Implementation Monitoring",
+      "Public Hospital Clinical Services Plan"
+    ],
+    "relationship_notes": "Major state client in Melbourne (close to A+C Australian office). High affinity for independent program evaluation."
+  },
+  {
+    "id": "vic-dpc",
+    "name": "Victorian Department of Premier and Cabinet",
+    "jurisdiction": "AU",
+    "tier": "State/Territory",
+    "sector": "Central Governance & First Peoples",
+    "key_divisions": [
+      "First Peoples - State Relations",
+      "Public Sector Reform Office",
+      "Economic and Social Policy",
+      "Cabinet and Governance"
+    ],
+    "past_engagements": [
+      "Treaty Readiness Cross-Agency Review",
+      "Victorian Public Sector Service Delivery Architecture"
+    ],
+    "relationship_notes": "Melbourne-based central agency leading treaty negotiations and public sector capability."
+  },
+  {
+    "id": "nsw-health",
+    "name": "NSW Ministry of Health",
+    "jurisdiction": "AU",
+    "tier": "State/Territory",
+    "sector": "Health & Healthcare Delivery",
+    "key_divisions": [
+      "Strategic Reform & Planning",
+      "Health System Management",
+      "Population Health and Prevention",
+      "Clinical Governance"
+    ],
+    "past_engagements": [
+      "Local Health District Governance Review",
+      "Specialised Healthcare Commissioning Framework"
+    ],
+    "relationship_notes": "Largest state healthcare jurisdiction in Australia."
+  }
+]
