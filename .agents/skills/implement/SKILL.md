@@ -1,26 +1,25 @@
 ---
 name: implement
-description: "Implement a piece of work based on a spec or set of tickets, isolated in a git worktree and merged back to the local branch on completion."
+description: "Implement a piece of work based on a spec or set of tickets directly on the main branch."
 disable-model-invocation: true
 ---
 
 # Implementation Protocol
 
-Execute work through strict phase gates. Each phase is a hard boundary with a checkable completion criterion. All work happens in an isolated git worktree; the local branch stays untouched until Phase 4.
+Execute work through strict phase gates. Each phase is a hard boundary with a checkable completion criterion. All work happens directly on the `main` branch.
 
-## Phase 0: Isolate in a worktree
+## Phase 0: Context & Workspace Sync
 
-1. **Capture context**: From the ticket, get the issue number and a short slug. Capture the merge target: the branch the main repo is on at invocation (`git branch --show-current`).
-2. **Create the worktree**: `git worktree add -b issue/<n>-<slug> ../<repo>-worktrees/<n>-<slug> <target>` (`<repo>` = the repo directory's name). If the branch already exists (resuming), drop `-b`: `git worktree add issue/<n>-<slug> ../<repo>-worktrees/<n>-<slug>`.
-3. **Install dependencies** in the worktree (`npm install`).
-4. **Operate inside the worktree from here on.** Every command in Phases 1-4 runs with the worktree as the working directory. Any sub-agent you spawn receives the worktree path and instructions to work there.
+1. **Capture context**: From the ticket or spec, get the issue number, title, and acceptance criteria.
+2. **Sync main branch**: Ensure you are on the `main` branch (`git checkout main`), the working tree is clean, and pull the latest changes (`git pull origin main`).
+3. **Install dependencies**: Ensure dependencies are up to date (`npm install` or repo-appropriate package manager).
 
-**Gate Criterion**: `git worktree list` shows the new worktree on branch `issue/<n>-<slug>`, dependencies installed, and you are operating inside it.
+**Gate Criterion**: Operating on `main` branch, workspace is synced and clean, and dependencies are installed.
 
 ## Phase 1: Seam Agreement & TDD Setup
 *Pointer*: Read [.agents/skills/tdd/SKILL.md] before starting.
 
-1. **Identify Seams**: Define public interface seams under test and record them in `implementation_plan.md` under Proposed Changes. Commit `implementation_plan.md` in the worktree branch so it travels through the merge.
+1. **Identify Seams**: Define public interface seams under test and record them in `implementation_plan.md` under Proposed Changes.
 2. **User Confirmation**: Confirm agreed test seams with the user before writing implementation code.
 3. **Red-Green Loop**: Execute vertical slice red → green cycles per seam (failing test first, minimal code to pass).
 
@@ -36,18 +35,17 @@ Execute work through strict phase gates. Each phase is a hard boundary with a ch
 ## Phase 3: Review Gate
 *Pointer*: Read [.agents/skills/code-review/SKILL.md] before executing review.
 
-1. **Spawn Parallel Reviewers**: Execute 2-axis review (Standards & Spec) by launching parallel sub-agents. Diff fixed point: `git diff <target>...HEAD` run in the worktree; pass each sub-agent the worktree path so they diff and read from there.
+1. **Spawn Parallel Reviewers**: Execute 2-axis review (Standards & Spec) by launching parallel sub-agents. Diff fixed point: compare against `origin/main` or the initial commit before changes (`git diff origin/main...HEAD` or working tree diff).
 2. **Record Findings**: Report review findings in `walkthrough.md` or execution summary.
 3. **Resolve Blockers**: Fix all hard violations or blocker findings identified by either reviewer.
 
-**Gate Criterion**: Parallel `/code-review` sub-agents have executed against `git diff <target>...HEAD` in the worktree and all blocker findings are resolved.
+**Gate Criterion**: Parallel `/code-review` sub-agents have executed and all blocker findings are resolved.
 
-## Phase 4: Merge Back & Clean Up
-1. **Commit**: Stage changes and commit in the worktree branch using a recognized GitHub closing keyword referencing the issue.
-2. **Sync before merging**: `git fetch origin`, then rebase the worktree branch onto `origin/<target>`. Resolve conflicts in the worktree. If anything changed, re-run the Phase 2 gate.
-3. **Merge serially into the local branch**: In the main repo, `git checkout <target>` then `git merge --no-ff issue/<n>-<slug>`. Only one merge at a time: if the target advanced since your rebase, re-sync and retry.
-4. **Push**: If the target is the repository's default branch, push it directly; otherwise push to origin and open/merge a PR into the default branch.
-5. **Close the issue**: `gh issue close <n> --comment "<one-line summary; merged to <target> in <merge-sha>"`. The closing keyword only auto-closes once the commit reaches the default branch — when the merge target isn't the default branch, close it explicitly so it doesn't linger open.
-6. **Clean up**: `git worktree remove ../<repo>-worktrees/<n>-<slug> --force`, `git worktree prune`, `git branch -d issue/<n>-<slug>`.
+## Phase 4: Commit, Push & Close Issue
+1. **Commit**: Stage changes and commit directly on `main` using a recognized GitHub closing keyword referencing the issue (e.g., `Closes #<n> <summary>`).
+2. **Sync before pushing**: Run `git pull --rebase origin main` to incorporate any new remote changes. If anything changed or conflicts were resolved, re-run the Phase 2 gate.
+3. **Push**: Push commits directly to `origin main` (`git push origin main`).
+4. **Close the issue**: `gh issue close <n> --comment "<one-line summary; committed to main in <sha>"`.
+5. **Clean up**: Remove any temporary scratch or test artifacts.
 
-**Gate Criterion**: The merge commit is visible on the local target branch (`git log --oneline -1`), pushed, the issue closed on GitHub, and the worktree removed.
+**Gate Criterion**: Changes are committed and pushed to `main` on origin (`git log --oneline -1`), and the issue is closed on GitHub.

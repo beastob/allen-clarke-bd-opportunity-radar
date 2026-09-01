@@ -1,0 +1,29 @@
+"""LangChain Opportunity Reasoning Pipeline package."""
+
+from radar.pipeline.analyzer_agent import ImpactAnalyzerAgent
+from radar.pipeline.filter_agent import IngestionFilterAgent
+from radar.pipeline.matcher_agent import ServiceMatcherAgent
+from radar.pipeline.models import (
+    BDOpportunity,
+    FilterResult,
+    ImpactAnalysis,
+    OpportunityScore,
+    PipelineResult,
+    ServiceMatch,
+)
+from radar.pipeline.orchestrator import OpportunityPipeline
+from radar.pipeline.scoring_agent import PrioritisationAgent
+
+__all__ = [
+    "OpportunityPipeline",
+    "IngestionFilterAgent",
+    "ImpactAnalyzerAgent",
+    "ServiceMatcherAgent",
+    "PrioritisationAgent",
+    "FilterResult",
+    "ImpactAnalysis",
+    "ServiceMatch",
+    "OpportunityScore",
+    "BDOpportunity",
+    "PipelineResult",
+]
