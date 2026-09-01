@@ -13,8 +13,10 @@ def seed_database(db: DatabaseManager, force: bool = False) -> Dict[str, Any]:
 
     if force:
         with db.get_connection() as conn:
+            conn.execute("PRAGMA foreign_keys = OFF;")
             conn.execute("DELETE FROM service_lines;")
             conn.execute("DELETE FROM clients;")
+            conn.execute("PRAGMA foreign_keys = ON;")
 
     data_dir = Path(__file__).parent.parent / "data"
     service_lines_file = data_dir / "seed_service_lines.json"

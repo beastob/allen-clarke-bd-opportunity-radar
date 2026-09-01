@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allen + Clarke BD Opportunity Radar - Fortnight Ending 01 September 2026</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            margin: 0;
+            padding: 24px 12px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 32px 28px;
+            border-bottom: 4px solid #0ea5e9;
+        }
+        .header-brand {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+        .header-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.5px;
+        }
+        .header-meta {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        .stats-bar {
+            display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 28px;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            flex: 1;
+            min-width: 140px;
+        }
+        .stat-val {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .content {
+            padding: 28px;
+        }
+        .opportunity-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            transition: transform 0.15s ease;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card-badges {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .rank-badge {
+            background: #0f172a;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .jurisdiction-badge {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .service-badge {
+            background: #f1f5f9;
+            color: #334155;
+            font-weight: 600;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+        }
+        .score-badge-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .score-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .score-pill {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 18px;
+            padding: 4px 12px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: baseline;
+        }
+        .score-max {
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.85;
+            margin-left: 2px;
+        }
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            line-height: 1.35;
+        }
+        .card-title a {
+            color: #0f172a;
+            text-decoration: none;
+        }
+        .card-title a:hover {
+            color: #0284c7;
+            text-decoration: underline;
+        }
+        .client-meta {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 18px;
+        }
+        .client-name {
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .score-breakdown {
+            display: flex;
+            gap: 16px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .score-metric {
+            flex: 1;
+            min-width: 120px;
+        }
+        .metric-name {
+            font-size: 11px;
+            color: #64748b;
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        .metric-bar-bg {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+        .metric-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+        .metric-val {
+            font-size: 12px;
+            font-weight: 700;
+            color: #334155;
+        }
+        .section-block {
+            margin-bottom: 16px;
+        }
+        .service-offering-block {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+        .service-offering-block .section-title {
+            color: #166534;
+            font-size: 12px;
+        }
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #334155;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .summary-text {
+            font-size: 14px;
+            color: #334155;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .demarcation-grid {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .fact-box, .interpretation-box {
+            flex: 1;
+            min-width: 280px;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+        .fact-box {
+            border: 1px solid #bfdbfe;
+            background: #eff6ff;
+        }
+        .fact-header {
+            background: #dbeafe;
+            color: #1e40af;
+            font-weight: 700;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .interpretation-box {
+            border: 1px solid #ddd6fe;
+            background: #faf5ff;
+        }
+        .interpretation-header {
+            background: #ede9fe;
+            color: #5b21b6;
+            font-weight: 700;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .box-body {
+            padding: 12px;
+            color: #1e293b;
+        }
+        .clean-list {
+            margin: 0 0 10px 0;
+            padding-left: 20px;
+            font-size: 13px;
+            color: #334155;
+        }
+        .deadlines-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .deadline-badge {
+            background: #fee2e2;
+            color: #991b1b;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid #fecaca;
+        }
+        .action-plan-box {
+            background: #fdf4ff;
+            border: 1px solid #f0abfc;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 18px;
+        }
+        .action-header {
+            font-size: 13px;
+            font-weight: 800;
+            color: #86198f;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        .persona-row {
+            font-size: 13px;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+        .persona-row code {
+            background: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+            font-weight: 600;
+            color: #701a75;
+        }
+        .starter-row {
+            font-size: 13px;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+        .starter-quote {
+            margin: 6px 0 0 0;
+            padding: 8px 12px;
+            background: #ffffff;
+            border-left: 3px solid #c026d3;
+            font-style: italic;
+            color: #4a044e;
+            border-radius: 0 6px 6px 0;
+        }
+        .pitch-list {
+            margin: 6px 0 0 0;
+            padding-left: 20px;
+            font-size: 13px;
+            color: #334155;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: #64748b;
+        }
+        .empty-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .footer {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 24px 28px;
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-brand">Allen + Clarke Consulting</div>
+            <h1 class="header-title">&#128065;&#65039; Allen + Clarke BD Opportunity Radar</h1>
+            <div class="header-meta">
+                <strong>Period:</strong> Fortnight Ending 01 September 2026 &bull; 
+                <strong>Jurisdictions:</strong> ALL (New Zealand &amp; Australia) &bull; 
+                <strong>Generated:</strong> 2026-09-01 04:23 UTC
+            </div>
+        </div>
+
+        <!-- Executive Metrics Bar -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-val">10</div>
+                <div class="stat-label">Qualified Opportunities</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-val" style="color: #059669;">1</div>
+                <div class="stat-label">High Priority (Score &ge; 80)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-val">10</div>
+                <div class="stat-label">Total Items Ingested</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#1</span>
+                            <span class="jurisdiction-badge" style="background-color: #2563eb;">NZ</span>
+                            <span class="service-badge">Evaluation + Review</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #059669;">HIGH PRIORITY</span>
+                            <div class="score-pill" style="background-color: #059669;">92<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://www.beehive.govt.nz/release/government-initiates-independent-review-public-hospital-planned-care-operating-models" target="_blank">Government initiates independent review of public hospital planned care operating models</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">Health New Zealand (Te Whatu Ora)</span> &bull; 
+                        <strong>Published:</strong> 2026-08-31T10:30:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 88%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">31/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 88%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">31/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 100%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">30/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">Minister of Health announces terms of reference for an independent operating model and commissioning review across Health New Zealand (Te Whatu Ora) to eliminate planned surgery waitlists and optimize regional clinical pathways.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: Government initiates independent review of public hospital planned care operating models. Source Authority: Beehive Ministerial Releases (NZ). Published Date: 2026-08-31T10:30:00+00:00 (Source: https://www.beehive.govt.nz/release/government-initiates-independent-review-public-hospital-planned-care-operating-models). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: and commission, Te Whatu Ora, te planned surgery waitlists and optimize regional clinical pathways.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on and commission, Te Whatu Ora. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for conduct statutory programme review and evidence-based performance evaluation. and coordinate cross-jurisdictional governance and local transition planning..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Conduct statutory programme review and evidence-based performance evaluation.</li><li>Coordinate cross-jurisdictional governance and local transition planning.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Evaluation + Review</div>
+                        <p class="summary-text">Evaluation + Review advisory support tailored for Health New Zealand (Te Whatu Ora), focusing on conduct statutory programme review and evidence-based performance evaluation..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>General Manager / Director, Evidence, Insights &amp; Evaluation</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear General Manager, following the recent announcement regarding &#x27;Government initiates independent review of public hospital planned care operating models&#x27;, we understand Health New Zealand (Te Whatu Ora) is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with evaluation + review advisory support tailored for health new zealand (te whatu ora), focusing on conduct statutory programme review and evidence-based performance evaluation.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Evaluation + Review across NZ public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#2</span>
+                            <span class="jurisdiction-badge" style="background-color: #7c3aed;">AU</span>
+                            <span class="service-badge">Policy + Regulation</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">79<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://www.legislation.gov.au/Details/C2026A00045" target="_blank">Aged Care Act 2026 (Act No. 45 of 2026)</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">Responsible Commonwealth Department / State Agency</span> &bull; 
+                        <strong>Published:</strong> 2026-08-30T19:00:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 68%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">24/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 88%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">31/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 80%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">24/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">An Act to establish a new person-centred regulatory framework for the funding, delivery, and quality governance of aged care services in Australia. Requires statutory review of system operating model within 24 months.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: Aged Care Act 2026 (Act No. 45 of 2026). Source Authority: Federal Register of Legislation Updates (AU). Published Date: 2026-08-30T19:00:00+00:00 (Source: https://www.legislation.gov.au/Details/C2026A00045). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: Responsible Commonwealth Department / State Agency.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on Responsible Commonwealth Department / State Agency. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for conduct statutory programme review and evidence-based performance evaluation. and develop operational policy guidance, regulatory standards, and compliance frameworks..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Conduct statutory programme review and evidence-based performance evaluation.</li><li>Develop operational policy guidance, regulatory standards, and compliance frameworks.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Policy + Regulation</div>
+                        <p class="summary-text">Policy + Regulation advisory support tailored for Responsible Commonwealth Department / State Agency, focusing on conduct statutory programme review and evidence-based performance evaluation..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>Deputy Secretary / Executive Director, Policy &amp; Regulatory Reform</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear Deputy Secretary, following the recent announcement regarding &#x27;Aged Care Act 2026 (Act No. 45 of 2026)&#x27;, we understand Responsible Commonwealth Department / State Agency is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with policy + regulation advisory support tailored for responsible commonwealth department / state agency, focusing on conduct statutory programme review and evidence-based performance evaluation.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Policy + Regulation across AU public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#3</span>
+                            <span class="jurisdiction-badge" style="background-color: #2563eb;">NZ</span>
+                            <span class="service-badge">Policy + Regulation</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">79<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://www.parliament.nz/en/pb/bills-and-laws/bills-proposed-laws/document/BILL_12345/health-disability-services-amendment-bill" target="_blank">Health and Disability Services (System Oversight and Standards) Amendment Bill</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">Responsible NZ Government Department / Crown Entity</span> &bull; 
+                        <strong>Published:</strong> 2026-08-30T12:00:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 57%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">20/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 100%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">35/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 80%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">24/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">The Social Services and Community Committee invites public submissions on the Health and Disability Services Amendment Bill. The bill introduces mandatory quality reporting standards, clinical risk governance frameworks, and independent evaluation mandates for contracted community providers.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: Health and Disability Services (System Oversight and Standards) Amendment Bill. Source Authority: New Zealand Parliament - Bills and Laws (NZ). Published Date: 2026-08-30T12:00:00+00:00 (Source: https://www.parliament.nz/en/pb/bills-and-laws/bills-proposed-laws/document/BILL_12345/health-disability-services-amendment-bill). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: Responsible NZ Government Department / Crown Entity.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on Responsible NZ Government Department / Crown Entity. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for conduct statutory programme review and evidence-based performance evaluation. and develop operational policy guidance, regulatory standards, and compliance frameworks..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Conduct statutory programme review and evidence-based performance evaluation.</li><li>Develop operational policy guidance, regulatory standards, and compliance frameworks.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Policy + Regulation</div>
+                        <p class="summary-text">Policy + Regulation advisory support tailored for Responsible NZ Government Department / Crown Entity, focusing on conduct statutory programme review and evidence-based performance evaluation..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>Deputy Secretary / Executive Director, Policy &amp; Regulatory Reform</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear Deputy Secretary, following the recent announcement regarding &#x27;Health and Disability Services (System Oversight and Standards) Amendment Bill&#x27;, we understand Responsible NZ Government Department / Crown Entity is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with policy + regulation advisory support tailored for responsible nz government department / crown entity, focusing on conduct statutory programme review and evidence-based performance evaluation.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Policy + Regulation across NZ public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#4</span>
+                            <span class="jurisdiction-badge" style="background-color: #7c3aed;">AU</span>
+                            <span class="service-badge">Evaluation + Review</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">79<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://ministers.pmc.gov.au/media-releases/independent-review-aps-consulting-governance-2026" target="_blank">Independent review of Australian Public Service consulting governance and evaluation frameworks</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">Responsible Commonwealth Department / State Agency</span> &bull; 
+                        <strong>Published:</strong> 2026-08-27T13:15:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 68%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">24/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 88%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">31/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 80%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">24/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">Minister for the Public Service Katy Gallagher announces an evaluation of APS core capability frameworks and value-for-money metrics across strategic policy advisory procurements.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: Independent review of Australian Public Service consulting governance and evaluation frameworks. Source Authority: Australian Ministers Media Releases (AU). Published Date: 2026-08-27T13:15:00+00:00 (Source: https://ministers.pmc.gov.au/media-releases/independent-review-aps-consulting-governance-2026). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: Responsible Commonwealth Department / State Agency.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on Responsible Commonwealth Department / State Agency. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for conduct statutory programme review and evidence-based performance evaluation. and develop operational policy guidance, regulatory standards, and compliance frameworks..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Conduct statutory programme review and evidence-based performance evaluation.</li><li>Develop operational policy guidance, regulatory standards, and compliance frameworks.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Evaluation + Review</div>
+                        <p class="summary-text">Evaluation + Review advisory support tailored for Responsible Commonwealth Department / State Agency, focusing on conduct statutory programme review and evidence-based performance evaluation..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>General Manager / Director, Evidence, Insights &amp; Evaluation</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear General Manager, following the recent announcement regarding &#x27;Independent review of Australian Public Service consulting governance and evaluation frameworks&#x27;, we understand Responsible Commonwealth Department / State Agency is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with evaluation + review advisory support tailored for responsible commonwealth department / state agency, focusing on conduct statutory programme review and evidence-based performance evaluation.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Evaluation + Review across AU public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#5</span>
+                            <span class="jurisdiction-badge" style="background-color: #2563eb;">NZ</span>
+                            <span class="service-badge">Policy + Regulation</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">78<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://www.parliament.nz/en/pb/sc/business-before-committees/document/INQ_98765/inquiry-crown-maori-environmental-governance" target="_blank">Inquiry into Crown-Māori Environmental Co-governance and Consenting Frameworks</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">regional councils</span> &bull; 
+                        <strong>Published:</strong> 2026-08-27T18:45:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 80%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">28/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 88%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">31/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 63%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">19/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">The Environment Select Committee has initiated a nationwide inquiry into iwi and hapū participation in natural resource consenting and Treaty partnership outcomes across regional councils.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: Inquiry into Crown-Māori Environmental Co-governance and Consenting Frameworks. Source Authority: New Zealand Parliament - Bills and Laws (NZ). Published Date: 2026-08-27T18:45:00+00:00 (Source: https://www.parliament.nz/en/pb/sc/business-before-committees/document/INQ_98765/inquiry-crown-maori-environmental-governance). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: regional councils.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on regional councils. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for develop operational policy guidance, regulatory standards, and compliance frameworks. and coordinate cross-jurisdictional governance and local transition planning..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Develop operational policy guidance, regulatory standards, and compliance frameworks.</li><li>Coordinate cross-jurisdictional governance and local transition planning.</li><li>Design and execute culturally grounded iwi, Māori, and community consultation processes.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Policy + Regulation</div>
+                        <p class="summary-text">Policy + Regulation advisory support tailored for regional councils, focusing on develop operational policy guidance, regulatory standards, and compliance frameworks..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>Deputy Secretary / Executive Director, Policy &amp; Regulatory Reform</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear Deputy Secretary, following the recent announcement regarding &#x27;Inquiry into Crown-Māori Environmental Co-governance and Consenting Frameworks&#x27;, we understand regional councils is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with policy + regulation advisory support tailored for regional councils, focusing on develop operational policy guidance, regulatory standards, and compliance frameworks.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Policy + Regulation across NZ public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#6</span>
+                            <span class="jurisdiction-badge" style="background-color: #2563eb;">NZ</span>
+                            <span class="service-badge">Policy + Regulation</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">75<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://www.beehive.govt.nz/release/regulatory-impact-assessment-guidelines-refreshed-emergency-infrastructure-consenting" target="_blank">Regulatory impact assessment guidelines refreshed for emergency infrastructure consenting</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">Responsible NZ Government Department / Crown Entity</span> &bull; 
+                        <strong>Published:</strong> 2026-08-29T13:00:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 57%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">20/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 88%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">31/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 80%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">24/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">Minister for Regulation announces updated Cabinet regulatory impact statement requirements and mandatory cost-benefit evaluation criteria for major infrastructure projects.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: Regulatory impact assessment guidelines refreshed for emergency infrastructure consenting. Source Authority: Beehive Ministerial Releases (NZ). Published Date: 2026-08-29T13:00:00+00:00 (Source: https://www.beehive.govt.nz/release/regulatory-impact-assessment-guidelines-refreshed-emergency-infrastructure-consenting). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: Responsible NZ Government Department / Crown Entity.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on Responsible NZ Government Department / Crown Entity. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for conduct statutory programme review and evidence-based performance evaluation. and develop operational policy guidance, regulatory standards, and compliance frameworks..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Conduct statutory programme review and evidence-based performance evaluation.</li><li>Develop operational policy guidance, regulatory standards, and compliance frameworks.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Policy + Regulation</div>
+                        <p class="summary-text">Policy + Regulation advisory support tailored for Responsible NZ Government Department / Crown Entity, focusing on conduct statutory programme review and evidence-based performance evaluation..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>Deputy Secretary / Executive Director, Policy &amp; Regulatory Reform</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear Deputy Secretary, following the recent announcement regarding &#x27;Regulatory impact assessment guidelines refreshed for emergency infrastructure consenting&#x27;, we understand Responsible NZ Government Department / Crown Entity is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with policy + regulation advisory support tailored for responsible nz government department / crown entity, focusing on conduct statutory programme review and evidence-based performance evaluation.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Policy + Regulation across NZ public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#7</span>
+                            <span class="jurisdiction-badge" style="background-color: #7c3aed;">AU</span>
+                            <span class="service-badge">Policy + Regulation</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">75<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://www.legislation.gov.au/Details/F2026L00789" target="_blank">National Disability Insurance Scheme Amendment (Quality and Safeguards Framework) Rules 2026</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">Responsible Commonwealth Department / State Agency</span> &bull; 
+                        <strong>Published:</strong> 2026-08-28T14:00:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 57%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">20/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 88%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">31/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 80%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">24/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">Legislative instrument enacting enhanced risk screening and provider audit protocols across high-intensity disability supports.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: National Disability Insurance Scheme Amendment (Quality and Safeguards Framework) Rules 2026. Source Authority: Federal Register of Legislation Updates (AU). Published Date: 2026-08-28T14:00:00+00:00 (Source: https://www.legislation.gov.au/Details/F2026L00789). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: Responsible Commonwealth Department / State Agency.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on Responsible Commonwealth Department / State Agency. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for conduct statutory programme review and evidence-based performance evaluation. and develop operational policy guidance, regulatory standards, and compliance frameworks..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Conduct statutory programme review and evidence-based performance evaluation.</li><li>Develop operational policy guidance, regulatory standards, and compliance frameworks.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Policy + Regulation</div>
+                        <p class="summary-text">Policy + Regulation advisory support tailored for Responsible Commonwealth Department / State Agency, focusing on conduct statutory programme review and evidence-based performance evaluation..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>Deputy Secretary / Executive Director, Policy &amp; Regulatory Reform</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear Deputy Secretary, following the recent announcement regarding &#x27;National Disability Insurance Scheme Amendment (Quality and Safeguards Framework) Rules 2026&#x27;, we understand Responsible Commonwealth Department / State Agency is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with policy + regulation advisory support tailored for responsible commonwealth department / state agency, focusing on conduct statutory programme review and evidence-based performance evaluation.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Policy + Regulation across AU public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#8</span>
+                            <span class="jurisdiction-badge" style="background-color: #2563eb;">NZ</span>
+                            <span class="service-badge">Kaupapa Māori &amp; Pacific Policy</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">74<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://www.beehive.govt.nz/release/pacific-fisheries-resilience-package-launched-regional-partners" target="_blank">Pacific fisheries resilience package launched with regional partners</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">te and enhance sustainable fisheries monitoring and compliance across Polynesia and Melanesia</span> &bull; 
+                        <strong>Published:</strong> 2026-08-30T16:15:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 68%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">24/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 88%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">31/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 63%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">19/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">Minister for Foreign Affairs and Minister for Oceans and Fisheries announce a joint $14.5 million multi-year technical assistance initiative to evaluate and enhance sustainable fisheries monitoring and compliance across Polynesia and Melanesia.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: Pacific fisheries resilience package launched with regional partners. Source Authority: Beehive Ministerial Releases (NZ). Published Date: 2026-08-30T16:15:00+00:00 (Source: https://www.beehive.govt.nz/release/pacific-fisheries-resilience-package-launched-regional-partners). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: te and enhance sustainable fisheries monitoring and compliance across Polynesia and Melanesia.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on te and enhance sustainable fisheries monitoring and compliance across Polynesia and Melanesia. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for coordinate cross-jurisdictional governance and local transition planning. and design and execute culturally grounded iwi, māori, and community consultation processes..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Coordinate cross-jurisdictional governance and local transition planning.</li><li>Design and execute culturally grounded iwi, Māori, and community consultation processes.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Kaupapa Māori &amp; Pacific Policy</div>
+                        <p class="summary-text">Kaupapa Māori &amp; Pacific Policy advisory support tailored for te and enhance sustainable fisheries monitoring and compliance across Polynesia and Melanesia, focusing on coordinate cross-jurisdictional governance and local transition planning..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>Chief Advisor / Director, Māori Strategy &amp; Pacific Partnerships</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear Chief Advisor, following the recent announcement regarding &#x27;Pacific fisheries resilience package launched with regional partners&#x27;, we understand te and enhance sustainable fisheries monitoring and compliance across Polynesia and Melanesia is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with kaupapa māori &amp; pacific policy advisory support tailored for te and enhance sustainable fisheries monitoring and compliance across polynesia and melanesia, focusing on coordinate cross-jurisdictional governance and local transition planning.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Kaupapa Māori &amp; Pacific Policy across NZ public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#9</span>
+                            <span class="jurisdiction-badge" style="background-color: #7c3aed;">AU</span>
+                            <span class="service-badge">Business Change &amp; Public Sector Governance</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">69<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://ministers.health.gov.au/ministers/mark-butler-mp/media-releases/commonwealth-commits-382m-aged-care-regulatory-oversight" target="_blank">Commonwealth commits $38.2 million to transform national aged care regulatory oversight</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">Safety Commission</span> &bull; 
+                        <strong>Published:</strong> 2026-08-31T11:00:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 57%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">20/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 71%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">25/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 80%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">24/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">Minister for Health and Aged Care Mark Butler today announced a comprehensive capability enhancement program for the Aged Care Quality and Safety Commission to implement the new rights-based Aged Care Act. An independent evaluation partner will be commissioned to assess provider transition readiness and compliance burden.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: Commonwealth commits $38.2 million to transform national aged care regulatory oversight. Source Authority: Australian Ministers Media Releases (AU). Published Date: 2026-08-31T11:00:00+00:00 (Source: https://ministers.health.gov.au/ministers/mark-butler-mp/media-releases/commonwealth-commits-382m-aged-care-regulatory-oversight). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: Safety Commission, be commission.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on Safety Commission, be commission. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for conduct statutory programme review and evidence-based performance evaluation..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Conduct statutory programme review and evidence-based performance evaluation.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Business Change &amp; Public Sector Governance</div>
+                        <p class="summary-text">Business Change &amp; Public Sector Governance advisory support tailored for Safety Commission, focusing on conduct statutory programme review and evidence-based performance evaluation..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>Deputy Chief Executive / Director, Transformation &amp; Governance</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear Deputy Chief Executive, following the recent announcement regarding &#x27;Commonwealth commits $38.2 million to transform national aged care regulatory oversight&#x27;, we understand Safety Commission is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with business change &amp; public sector governance advisory support tailored for safety commission, focusing on conduct statutory programme review and evidence-based performance evaluation.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Business Change &amp; Public Sector Governance across AU public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="opportunity-card">
+                    <div class="card-header">
+                        <div class="card-badges">
+                            <span class="rank-badge">#10</span>
+                            <span class="jurisdiction-badge" style="background-color: #7c3aed;">AU</span>
+                            <span class="service-badge">Evaluation + Review</span>
+                        </div>
+                        <div class="score-badge-container">
+                            <span class="score-label" style="color: #d97706;">MEDIUM PRIORITY</span>
+                            <div class="score-pill" style="background-color: #d97706;">69<span class="score-max">/100</span></div>
+                        </div>
+                    </div>
+
+                    <h2 class="card-title"><a href="https://ministers.dss.gov.au/media-releases/national-carer-strategy-action-plan-2026" target="_blank">National Carer Strategy 2026-2036 released with cross-agency action plan</a></h2>
+
+                    <div class="client-meta">
+                        <strong>Target Client:</strong> <span class="client-name">Responsible Commonwealth Department / State Agency</span> &bull; 
+                        <strong>Published:</strong> 2026-08-30T16:30:00+00:00
+                    </div>
+
+                    <!-- Score Breakdown Bar -->
+                    <div class="score-breakdown">
+                        <div class="score-metric">
+                            <span class="metric-name">Strategic Fit</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 57%; background-color: #3b82f6;"></div></div>
+                            <span class="metric-val">20/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Statutory Urgency</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 71%; background-color: #ef4444;"></div></div>
+                            <span class="metric-val">25/35</span>
+                        </div>
+                        <div class="score-metric">
+                            <span class="metric-name">Budget Likelihood</span>
+                            <div class="metric-bar-bg"><div class="metric-bar-fill" style="width: 80%; background-color: #10b981;"></div></div>
+                            <span class="metric-val">24/30</span>
+                        </div>
+                    </div>
+
+                    <!-- Change Summary -->
+                    <div class="section-block">
+                        <div class="section-title">&#128227; Policy Shift / Regulatory Change</div>
+                        <p class="summary-text">Minister for Social Services Amanda Rishworth launched the 10-year National Carer Strategy, establishing an inter-departmental working group to align carer supports across NDIS, aged care, and Medicare, alongside a requirement for annual monitoring and evaluation reporting.</p>
+                    </div>
+
+                    <!-- Fact vs Strategic Interpretation Comparison -->
+                    <div class="demarcation-grid">
+                        <div class="fact-box">
+                            <div class="box-header fact-header">&#9989; Verified Statutory Facts</div>
+                            <div class="box-body">Announcement Title: National Carer Strategy 2026-2036 released with cross-agency action plan. Source Authority: Australian Ministers Media Releases (AU). Published Date: 2026-08-30T16:30:00+00:00 (Source: https://ministers.dss.gov.au/media-releases/national-carer-strategy-action-plan-2026). Statutory / Implementation Milestones: Within upcoming 6-12 month regulatory window. Referenced Public Entities: Responsible Commonwealth Department / State Agency.</div>
+                        </div>
+                        <div class="interpretation-box">
+                            <div class="box-header interpretation-header">&#128161; Strategic Consulting Interpretation</div>
+                            <div class="box-body">The policy shift places immediate delivery pressure on Responsible Commonwealth Department / State Agency. Given strict timeline commitments (Within upcoming 6-12 month regulatory window), internal teams likely face capacity bottlenecks. External advisory support is strongly indicated for conduct statutory programme review and evidence-based performance evaluation..</div>
+                        </div>
+                    </div>
+
+                    <!-- Operational Obligations & Deadlines -->
+                    <div class="section-block obligations-block">
+                        <div class="section-title">&#128203; Implementation Obligations & Compliance Deadlines</div>
+                        <ul class="clean-list">
+                            <li>Conduct statutory programme review and evidence-based performance evaluation.</li>
+                        </ul>
+                        <div class="deadlines-container"><span class="deadline-badge">&#9200; Within upcoming 6-12 month regulatory window</span></div>
+                    </div>
+
+                    <!-- A+C Service Line Offering Alignment -->
+                    <div class="section-block service-offering-block">
+                        <div class="section-title">&#128188; A+C Capability Alignment: Evaluation + Review</div>
+                        <p class="summary-text">Evaluation + Review advisory support tailored for Responsible Commonwealth Department / State Agency, focusing on conduct statutory programme review and evidence-based performance evaluation..</p>
+                    </div>
+
+                    <!-- BD Action Plan Box -->
+                    <div class="action-plan-box">
+                        <div class="action-header">&#127919; Business Development Action Plan</div>
+                        <div class="action-content">
+                            <div class="persona-row">
+                                <strong>Target Contact Persona:</strong> <code>General Manager / Director, Evidence, Insights &amp; Evaluation</code>
+                            </div>
+                            <div class="starter-row">
+                                <strong>Conversation Starter:</strong>
+                                <blockquote class="starter-quote">"Kia ora / Dear General Manager, following the recent announcement regarding &#x27;National Carer Strategy 2026-2036 released with cross-agency action plan&#x27;, we understand Responsible Commonwealth Department / State Agency is navigating key operational requirements ahead of the Within upcoming 6-12 month regulatory window milestone. Allen + Clarke has extensive experience assisting public sector leaders with evaluation + review advisory support tailored for responsible commonwealth department / state agency, focusing on conduct statutory programme review and evidence-based performance evaluation.. — would you have 15 minutes next week for an exploratory discussion on how we can support your delivery team?"</blockquote>
+                            </div>
+                            <div class="angles-row">
+                                <strong>Key Pitch Angles:</strong>
+                                <ul class="pitch-list">
+                                    <li>Proven track record in Evaluation + Review across AU public sector agencies.</li><li>Immediate capacity to absorb workload surge without compromising regulatory quality.</li><li>Direct capability to bridge policy intent with practical operational implementation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Allen + Clarke BD Opportunity Radar</strong> &bull; Policy, Evaluation & Strategic Advisory</p>
+            <p>Auckland &bull; Wellington &bull; Melbourne &bull; Canberra</p>
+            <p style="font-size: 11px; color: #94a3b8; margin-top: 8px;">Confidential — Distributed internally for Business Development & Practice Leadership.</p>
+        </div>
+    </div>
+</body>
+</html>
